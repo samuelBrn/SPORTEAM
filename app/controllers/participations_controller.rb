@@ -1,4 +1,4 @@
-class ParticipationController < ApplicationController
+class ParticipationsController < ApplicationController
   def new
     @event = Event.find(params[:event_id])
     @participation = Participation.new
