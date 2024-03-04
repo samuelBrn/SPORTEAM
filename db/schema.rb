@@ -10,9 +10,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_04_141100) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_04_142143) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "sport"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.bigint "categorie_id", null: false
+    t.string "name"
+    t.string "adress"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.string "status"
+    t.integer "max_player"
+    t.integer "min_player"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["categorie_id"], name: "index_events_on_categorie_id"
+  end
+
+  create_table "favourites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_favourites_on_category_id"
+    t.index ["user_id"], name: "index_favourites_on_user_id"
+  end
+
+  create_table "participations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "event_id", null: false
+    t.boolean "has_participated"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_participations_on_event_id"
+    t.index ["user_id"], name: "index_participations_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,4 +66,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_04_141100) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "events", "categories", column: "categorie_id"
+  add_foreign_key "favourites", "categories"
+  add_foreign_key "favourites", "users"
+  add_foreign_key "participations", "events"
+  add_foreign_key "participations", "users"
 end
