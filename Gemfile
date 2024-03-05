@@ -12,7 +12,7 @@ gem 'cloudinary'
 
 gem 'faker'
 
-
+gem "geocoder"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
