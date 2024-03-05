@@ -93,5 +93,10 @@ User.all.each do |user|
     category_id: Category.all.sample.id # Corrigé ici
   )
 end
+Event.all.each do |e|
+  Participation.create(
+    user: User.last, event: e
+  )
+end
 
 puts 'Nouvelles données créées avec succès !'
