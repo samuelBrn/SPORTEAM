@@ -3,7 +3,12 @@ class EventsController < ApplicationController
 
   # GET /events
   def index
-    @events = Event.all
+    if params[:category].present?
+      @category = Category.find(params[:category])
+      @events = Event.where(category_id: @category.id)
+    else
+      @events = Event.all
+    end
   end
 
   # GET /events/1
@@ -44,16 +49,14 @@ class EventsController < ApplicationController
     @event.destroy
     redirect_to events_url, notice: 'Event was successfully destroyed.'
   end
+end
 
   private
 
-    # Use callbacks to share common setup or constraints between actions.
   def set_event
     @event = Event.find(params[:id])
   end
 
-    # Only allow a list of trusted parameters through.
   def event_params
     params.require(:event).permit(:name, :description, :category_id, :start_time, :end_time)
   end
-end
