@@ -1,0 +1,20 @@
+<div class="banner">
+  <div class="container-form px-5 py-5 ">
+
+      <%= simple_form_for event do |f| %>
+        <%= f.input :name %>
+        <%= f.input :adress %>
+        <%= f.input :description %>
+        <%= f.association :category %>
+        <%= f.input :start_at %>
+        <%= f.input :end_at %>
+        <%= f.input :max_player %>
+        <%= f.input :min_player %>
+
+        <div style="text-align: center;">
+        <%= f.submit 'Publish', class: "btn custom-button px-5 py-2"  %>
+        </div>
+      <% end %>
+    </div>
+
+</div>

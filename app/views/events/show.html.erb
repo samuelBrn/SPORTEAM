@@ -17,13 +17,12 @@
 
 <p>
   <strong>Start Time:</strong>
-  <%= @event.start_time %>
+  <%= @event.start_at %>
 </p>
 
 <p>
   <strong>End Time:</strong>
-  <%= @event.end_time %>
+  <%= @event.end_at %>
 </p>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
