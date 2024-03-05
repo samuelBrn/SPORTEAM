@@ -9,12 +9,12 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'pages#dashboard'
 
-  resources :events, only: %i[ create new index show] do
+  resources :events, only: %i[create new index show] do
     resources :participation, only: %i[new create]
   end
 
   resources :categories, only: [] do
-    resources :favourites, only: [:create, :destroy]
+    resources :favourites, only: %i[create destroy]
   end
   # Defines the root path route ("/")
   # root "posts#index"

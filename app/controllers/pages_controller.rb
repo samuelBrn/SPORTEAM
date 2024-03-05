@@ -6,5 +6,6 @@ class PagesController < ApplicationController
 
   def dashboard
     @events = current_user.events
+    @favourites = Favourite.all
   end
 end

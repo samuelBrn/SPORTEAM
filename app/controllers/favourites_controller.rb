@@ -9,5 +9,7 @@ class FavouritesController < ApplicationController
   end
 
   def destroy
+    @user = current_user
+    @user.favourite.find
   end
 end
