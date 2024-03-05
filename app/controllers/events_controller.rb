@@ -14,7 +14,6 @@ class EventsController < ApplicationController
   # GET /events/1
  # app/controllers/events_controller.rb
   def show
-   @event = Event.find(params[:id])
   end
 
 
@@ -61,5 +60,6 @@ end
   end
 
   def event_params
-    params.require(:event).permit(:name, :description, :category_id, :start_time, :end_time)
+    params.require(:event).permit(:name, :description, :category_id, :adress, :start_at, :end_at, :status, :max_player, :min_player)
   end
+
