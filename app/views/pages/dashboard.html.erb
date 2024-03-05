@@ -1,0 +1,22 @@
+hi
+<h3>
+Your futur events
+</h3>
+<div >
+<% @events.each do |event| %>
+  <tr>
+    <td><%= event.name %></td>
+    <td><%= event.description %></td>
+    <td><%= event.category%></td>
+    <td><%= event.start_at %></td>
+    <td><%= event.end_at %></td>
+  </tr>
+  <% end %>
+</div>
+
+<h3>
+event jou joined
+</h3>
+.
+.
+.
