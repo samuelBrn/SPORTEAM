@@ -42,7 +42,7 @@ Category.create(sport: 'Basketball')
   )
 
   avatar_url = Faker::Avatar.image(slug: "my-own-slug", size: "50x50", format: "png")
-  file = URI.open(avatar_url)
+  file = URI.open(avatar_url)@
   user.avatar.attach(io: file, filename: "avatar_#{user.id}.png", content_type: "image/png")
 end
 

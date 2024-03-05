@@ -7,8 +7,11 @@ class EventsController < ApplicationController
   end
 
   # GET /events/1
+ # app/controllers/events_controller.rb
   def show
+   @event = Event.find(params[:id])
   end
+
 
   # GET /events/new
   def new
