@@ -30,7 +30,6 @@ class EventsController < ApplicationController
   # POST /events
   def create
     @event = Event.new(event_params)
-
     if @event.save
       redirect_to @event, notice: 'Event was successfully created.'
     else
@@ -61,5 +60,5 @@ end
   end
 
   def event_params
-    params.require(:event).permit(:name, :description, :category_id, :start_time, :end_time)
+    params.require(:event).permit(:name, :description, :category_id, :start_time, :end_time, :min_player, :max_player)
   end
