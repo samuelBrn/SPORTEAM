@@ -20,3 +20,16 @@ event jou joined
 .
 .
 .
+
+<h3>
+your categories
+</h3>
+
+<div>
+  <% Category.all.each do |cat| %>
+    <div>
+      <p><%= cat.sport %></p>
+      <%= link_to "Fav", category_favourites_path(cat), data: { turbo_method: :post } %>
+    </div>
+  <% end %>
+</div>

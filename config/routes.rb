@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   resources :events, only: %i[ create new index show] do
     resources :participation, only: %i[new create]
   end
+
+  resources :categories, only: [] do
+    resources :favourites, only: [:create, :destroy]
+  end
   # Defines the root path route ("/")
   # root "posts#index"
 end
