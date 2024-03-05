@@ -9,6 +9,14 @@ class EventsController < ApplicationController
     else
       @events = Event.all
     end
+
+    @markers = @events.geocoded.map do |event|
+      {
+        lat: event.latitude,
+        lng: event.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { event: event })
+      }
+    end
   end
 
   # GET /events/1
@@ -49,7 +57,6 @@ class EventsController < ApplicationController
     @event.destroy
     redirect_to events_url, notice: 'Event was successfully destroyed.'
   end
-end
 
   private
 
@@ -60,3 +67,4 @@ end
   def event_params
     params.require(:event).permit(:name, :description, :category_id, :start_time, :end_time)
   end
+end
