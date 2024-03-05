@@ -12,7 +12,7 @@
 
 <p>
   <strong>Category:</strong>
-  <%= @event.category.name %>
+  <%= @event.category.sport %>
 </p>
 
 <p>
@@ -26,3 +26,5 @@
 </p>
 
 <%= link_to 'Back', events_path %>
+<%= button_to 'Participer', participate_event_path(@event), method: :post, class: 'btn btn-primary' %>
+
