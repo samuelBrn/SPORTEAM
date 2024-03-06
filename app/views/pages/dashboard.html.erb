@@ -1,6 +1,6 @@
 hi
 <h3>
-Your futur events
+Your created events
 </h3>
 <div >
 
@@ -10,12 +10,26 @@ Your futur events
     <% if event.created_event?(current_user) %>
     <tr>
     <p> You created this event 🤩</p>
-      <td><%= event.name %></td>
-      <td><%= event.description %></td>
-      <td><%= event.category%></td>
-      <td><%= event.start_at %></td>
-      <td><%= event.end_at %></td>
-    </tr>
+    <div class="row">
+  <% @events.each do |event| %>
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <%# Insérer l'image de l'icône de la catégorie ici %>
+        <div class="card-body">
+          <h5 class="card-title"><%= event.name %></h5>
+          <p class="card-text"><strong>Category:</strong> <%= event.category.sport %></p>
+          <p class="card-text"><strong>Starts at:</strong> <%= event.start_at %></p>
+          <p class="card-text"><strong>Participants:</strong> <%= event.current_participants_count %> / <%= event.max_player %></p>
+          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#destroy-event-<%= event.id %>">Delete</button>
+          <%= render "events/destroy_modal", event: event %>
+          <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#edit-event-<%= event.id %>">Edit</button>
+          <%= render "events/edit_modal", event: event %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
     <% else %>
 
     <tr>

@@ -33,14 +33,10 @@
         <%# Insérer l'image de l'icône de la catégorie ici %>
         <div class="card-body">
           <h5 class="card-title"><%= event.name %></h5>
-          <p class="card-text"><%= event.description %></p>
           <p class="card-text"><strong>Category:</strong> <%= event.category.sport %></p>
           <p class="card-text"><strong>Starts at:</strong> <%= event.start_at %></p>
-          <p class="card-text"><strong>Ends at:</strong> <%= event.end_at %></p>
           <p class="card-text"><strong>Participants:</strong> <%= event.current_participants_count %> / <%= event.max_player %></p>
-          <%= link_to 'Show', event, class: 'btn btn-primary mr-2' %>
-          <%= link_to 'Edit', event_path(event), class: 'btn btn-secondary mr-2' %>
-          <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          <%= link_to 'Details', event, class: 'btn btn-primary mr-2' %>
         </div>
       </div>
 <div data-controller="switch">
