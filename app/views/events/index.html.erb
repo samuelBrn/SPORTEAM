@@ -2,8 +2,12 @@
 <p>Find people to moove your body</p>
 
 <%= form_tag(events_path, method: :get) do %>
-  <%= select_tag :category, options_for_select(Category.all.map { |c| [c.sport, c.id] }), prompt: "Select Category" %>
-  <%= submit_tag "Filter" %>
+  <% Category.all.each do |category| %>
+    <%= check_box_tag 'categories[]', category.id %>
+    <%= label_tag "category_#{category.id}", category.sport %>
+    <br>
+  <% end %>
+<button type="button" class="btn btn-light">My favs🩷</button>
 <% end %>
 
 <h1>Events</h1>
