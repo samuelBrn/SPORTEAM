@@ -9,4 +9,8 @@ class User < ApplicationRecord
   has_many :favourites
   has_many :categories, through: :favourites
   has_one_attached :avatar
+
+  def find_participation_for(event)
+    participations.find_by(event: event)
+  end
 end
