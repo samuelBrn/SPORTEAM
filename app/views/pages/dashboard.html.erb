@@ -15,7 +15,6 @@ Your futur events
       <td><%= event.category%></td>
       <td><%= event.start_at %></td>
       <td><%= event.end_at %></td>
-      <td>  <%= link_to "(x) quit this event", participation_path(current_user.find_participation_for(event)), data: {turbo_method: :delete, confirm: 'Are you sure?' } %> </td>
     </tr>
     <% else %>
 
@@ -27,6 +26,7 @@ Your futur events
       <td><%= event.category%></td>
       <td><%= event.start_at %></td>
       <td><%= event.end_at %></td>
+      <td><%= link_to "(x) quit this event", participation_path(current_user.find_participation_for(event)), data: {turbo_method: :delete, confirm: 'Are you sure?' } %></td>
     </tr>
 
     <% end %>
@@ -35,7 +35,7 @@ Your futur events
 </div>
 
 <h3>
-event jou joined
+Upcoming events
 </h3>
 .
 .
