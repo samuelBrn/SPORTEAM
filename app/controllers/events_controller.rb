@@ -2,6 +2,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
 
   def index
+    @user_categories_ids = current_user&.categories&.ids || []
     if params[:category].present?
       @category = Category.find(params[:category])
       @events = Event.where(category_id: @category.id)

@@ -48,6 +48,26 @@ your categories
   <%= link_to "delete", favourite_path(fav.id), data: {turbo_method: :delete, confirm: 'Are you sure?' } %>
 <% end%>
 
+<h3>Update Your Profile</h3>
+
+<%= form_for(current_user, url: user_profile_path, method: :patch) do |f| %>
+  <div>
+    <%= f.label :address %><br>
+    <%= f.text_field :address %>
+  </div>
+
+  <div>
+    <%= f.label :category_ids, "Select your favorite sports" %><br>
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :sport do |b| %>
+      <%= b.check_box %> <%= b.text %><br>
+    <% end %>
+  </div>
+
+  <%= f.submit "Update" %>
+<% end %>
+
+
+
 <h4> ADD </h4>
 <div>
   <% @other_categories.each do |cat| %>
