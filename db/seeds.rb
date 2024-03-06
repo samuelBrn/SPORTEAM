@@ -62,6 +62,7 @@ adresses_paris = [
 
 adresses_paris.each_with_index do |adresse, index|
   event = Event.create!(
+    user: User.all.sample,
     category_id: Category.all.sample.id,
     name: Faker::Sports::Football.competition,
     adress: adresse,
