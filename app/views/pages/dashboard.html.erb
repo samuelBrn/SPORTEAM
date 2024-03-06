@@ -37,7 +37,7 @@ your categories
   <% @other_categories.each do |cat| %>
     <div>
       <p><%= cat.sport %></p>
-      <%= link_to "Fav", category_favourites_path(cat), data: { turbo_method: :post } %>
+     <%= link_to "Fav", category_favourites_path(cat), data: { turbo_method: :post } %>
     </div>
   <% end %>
 </div>
