@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
   get 'dashboard', to: 'pages#dashboard'
 
-  resources :events, only: %i[create new index show] do
+  resources :events, only: %i[create new index show destroy] do
     resources :participations, only: %i[new create]
     post 'participate', to: 'participations#instant_create', on: :member
   end
