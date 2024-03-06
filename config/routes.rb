@@ -14,8 +14,11 @@ Rails.application.routes.draw do
   end
 
   resources :categories, only: [] do
-    resources :favourites, only: %i[create destroy]
+    resources :favourites, only: %i[create]
   end
+
+  resources :favourites, only: %i[destroy]
+
   # Defines the root path route ("/")
   # root "posts#index"
 end

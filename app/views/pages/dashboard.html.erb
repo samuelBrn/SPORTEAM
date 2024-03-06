@@ -25,20 +25,19 @@ event jou joined
 your categories
 </h3>
 
-<% @favourites.each do |fav| %>
+<% @user_favourites.each do |fav| %>
   <p>
     Favorite Sport: <%= fav.category.sport %>
   </p>
+  <%= link_to "delete", favourite_path(fav.id), data: {turbo_method: :delete, confirm: 'Are you sure?' } %>
 <% end%>
 
 <h4> ADD </h4>
 <div>
-  <% Category.all.each do |cat| %>
+  <% @other_categories.each do |cat| %>
     <div>
       <p><%= cat.sport %></p>
       <%= link_to "Fav", category_favourites_path(cat), data: { turbo_method: :post } %>
-      <%= link_to "delete", category_favourite_path(cat), data: { turbo_method: :destroy } %>
-
     </div>
   <% end %>
 </div>
