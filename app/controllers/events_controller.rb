@@ -52,6 +52,8 @@ class EventsController < ApplicationController
     redirect_to events_url, notice: 'Event was successfully destroyed.'
   end
 
+
+
   private
 
   def set_event
