@@ -11,6 +11,7 @@ class EventsController < ApplicationController
 
     @markers = @events.geocoded.map do |event|
       {
+        image: view_context.asset_path("#{event.category.sport.downcase}.png"),
         lat: event.latitude,
         lng: event.longitude,
         info_window_html: render_to_string(partial: "info_window", locals: { event: event })
