@@ -10,6 +10,19 @@
 <button type="button" class="btn btn-light">My favs🩷</button>
 <% end %>
 
+<div data-controller="switch">
+  <div class="container text-center">
+    <div class="btn-group" data-switch-target="" >
+      <button data-action="click->switch#handleClick" data-switch-toggableTarget-param="list" >
+        LIST 📋
+      </button>
+      <button data-action="click->switch#handleClick" data-switch-toggableTarget-param="map" >
+        MAP 🌍
+      </button>
+    </div>
+  </div>
+
+
 <h1>Events</h1>
 <div style="width: 100%; height: 600px;"
   data-controller="map"
@@ -49,4 +62,6 @@
   <% end %>
 </div>
 
-<%= link_to 'New Event', new_event_path %>
+
+
+</div>
