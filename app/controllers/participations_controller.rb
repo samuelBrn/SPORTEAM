@@ -1,5 +1,7 @@
 class ParticipationsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_participation, only: [:destroy]
+
 
   def new
     @event = Event.find(params[:id])
@@ -18,5 +20,16 @@ class ParticipationsController < ApplicationController
     else
       redirect_to @event, alert: 'Cet événement a déjà atteint le nombre maximum de participants.'
     end
+  end
+
+  def destroy
+    @participation.destroy
+    redirect_to dashboard_path, status: :see_other
+  end
+
+  private
+
+  def set_participation
+    @participation = Participation.find(params[:id])
   end
 end
