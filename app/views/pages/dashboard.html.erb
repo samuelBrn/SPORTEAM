@@ -3,14 +3,31 @@ hi
 Your futur events
 </h3>
 <div >
+
+
 <% @events.each do |event| %>
-  <tr>
-    <td><%= event.name %></td>
-    <td><%= event.description %></td>
-    <td><%= event.category%></td>
-    <td><%= event.start_at %></td>
-    <td><%= event.end_at %></td>
-  </tr>
+    <% if event.created_event?(current_user) %>
+    <tr>
+    <p> You created this event 🤩</p>
+      <td><%= event.name %></td>
+      <td><%= event.description %></td>
+      <td><%= event.category%></td>
+      <td><%= event.start_at %></td>
+      <td><%= event.end_at %></td>
+    </tr>
+    <% else %>
+
+    <tr>
+    <p> You joined this event 🤗</p>
+
+      <td><%= event.name %></td>
+      <td><%= event.description %></td>
+      <td><%= event.category%></td>
+      <td><%= event.start_at %></td>
+      <td><%= event.end_at %></td>
+    </tr>
+
+    <% end %>
   <% end %>
 </div>
 
@@ -20,7 +37,6 @@ event jou joined
 .
 .
 .
-
 <h3>
 your categories
 </h3>
