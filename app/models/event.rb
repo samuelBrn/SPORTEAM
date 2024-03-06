@@ -4,6 +4,9 @@ class Event < ApplicationRecord
   has_many :users, through: :participations
   has_one_attached :image
   geocoded_by :adress
-
   after_validation :geocode, if: :will_save_change_to_adress?
+  
+  def current_participants_count
+    participations.count
+  end
 end

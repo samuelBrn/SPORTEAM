@@ -1,23 +1,22 @@
 class ParticipationsController < ApplicationController
+  before_action :authenticate_user!
+
   def new
-    @event = Event.find(params[:event_id])
+    @event = Event.find(params[:id])
     @participation = Participation.new
   end
 
-  def create
-    @event = Event.find(params[:event_id])
-    @participation = Participation.new(participation_params)
-
-    if @participation.save
-      redirect_to dashboard_path, notice: 'your participation for this sevent is validated'
+  def instant_create
+    @event = Event.find(params[:id])
+    if @event.participations.count < @event.max_player
+      @participation = Participation.new(event: @event, user: current_user)
+      if @participation.save
+        redirect_to @event, notice: 'Participation confirmée.'
+      else
+        redirect_to @event, alert: 'Vous êtes déjà inscrit à cet évènement.'
+      end
     else
-      render :new, status: :unprocessable_entity
+      redirect_to @event, alert: 'Cet événement a déjà atteint le nombre maximum de participants.'
     end
-  end
-
-  private
-
-  def participation_params
-    params.require(:participation).permit(:user_id, :event_id, :status)
   end
 end

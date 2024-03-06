@@ -12,8 +12,15 @@
 
 <p>
   <strong>Category:</strong>
-  <%= @event.category.name %>
+  <%= @event.category.sport %>
 </p>
+
+<p>
+  <strong>Participants:</strong>
+  <%= @event.participations.count %> / <%= @event.max_player %>
+</p>
+
+
 
 <p>
   <strong>Start Time:</strong>
@@ -26,3 +33,8 @@
 </p>
 
 <%= link_to 'Back', events_path %>
+<% if @event.participations.count < @event.max_player %>
+  <%= button_to 'Participer', participate_event_path(@event), method: :post, class: 'btn btn-primary' %>
+<% else %>
+  <p>Cet événement a déjà atteint le nombre maximum de participants.</p>
+<% end %>
