@@ -9,4 +9,9 @@ class Event < ApplicationRecord
   def current_participants_count
     participations.count
   end
+
+  def created_event?(user)
+    @participation_first = participations.first
+    @participation_first.user_id == user.id
+  end
 end
