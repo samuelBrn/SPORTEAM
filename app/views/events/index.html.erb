@@ -36,6 +36,7 @@
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Edit', event_path(event) %></td>
         <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=event.current_participants_count %> / <%= event.max_player %></td>
       </tr>
     <% end %>
   </tbody>
