@@ -6,6 +6,13 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'pages#dashboard'
 
   resources :events, only: %i[create new index show] do
+    
+  resources :categories, only: [] do
+    resources :favourites, only: %i[create]
+  end
+
+  resources :favourites, only: %i[destroy]
+
     resources :participations, only: %i[new create]
     post 'participate', to: 'participations#instant_create', on: :member
   end
