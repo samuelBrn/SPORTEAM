@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   get "up" => "rails/health#show", as: :rails_health_check
   get 'dashboard', to: 'pages#dashboard'
+  patch 'update_profile', to: 'pages#update_profile' # Ajout de la route pour la mise à jour du profil
+  patch 'profile', to: 'pages#update_profile', as: :user_profile
+
 
   resources :events, only: %i[create new index show] do
     resources :participations, only: %i[new create]
