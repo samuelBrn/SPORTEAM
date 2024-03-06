@@ -31,6 +31,8 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @event.user = current_user
+
     if @event.save
       Participation.create(user: current_user, event: @event)
       redirect_to dashboard_path, notice: 'Event was successfully created.'
@@ -51,8 +53,6 @@ class EventsController < ApplicationController
     @event.destroy
     redirect_to events_url, notice: 'Event was successfully destroyed.'
   end
-
-
 
   private
 
