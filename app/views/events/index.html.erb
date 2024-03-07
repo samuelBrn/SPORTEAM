@@ -2,12 +2,14 @@
 <p>Find people to moove your body</p>
 
 <%= form_tag(events_path, method: :get) do %>
-  <%= select_tag 'categories[]', options_from_collection_for_select(Category.all, :id, :sport, @user_categories_ids), { include_blank: 'All Categories', multiple: true } %>
-  <%= submit_tag 'Filter', class: 'btn btn-light' %>
+  <% Category.all.each do |category| %>
+    <div class="form-check">
+      <%= check_box_tag 'categories[]', category.id, @user_categories_ids.present? && @user_categories_ids.include?(category.id), class: 'form-check-input', id: "category_#{category.id}" %>
+      <%= label_tag "category_#{category.id}", category.sport, class: 'form-check-label' %>
+    </div>
+  <% end %>
+  <%= submit_tag 'My favs🖤', class: 'btn btn-light' %>
 <% end %>
-
-
-
 
 <div class="container mt-3" data-controller="switch">
 
