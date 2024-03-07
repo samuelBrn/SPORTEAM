@@ -62,6 +62,10 @@ class EventsController < ApplicationController
   end
 
   def update
+    if current_user != @event.user
+      return redirect_to @event, alert: 'You are not authorized to edit this event.'
+    end
+
     if @event.update(event_params)
       redirect_to @event, notice: 'Event was successfully updated.'
     else
