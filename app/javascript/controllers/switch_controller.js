@@ -4,7 +4,7 @@ export default class extends Controller {
   static targets = ["tabs", "cards", "map"]
 
   handleClick(event) {
-    if (event.params.toggabletarget === "list") {
+    if (event.params.toggabletarget === "map") {
       this.showCards()
     } else {
       this.showMap()
