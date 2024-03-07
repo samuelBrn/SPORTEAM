@@ -14,26 +14,27 @@
   data-map-markers-value="<%= @markers.to_json %>"
   data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 
-  <table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Category</th>
-      <th>Start Time</th>
-      <th>End Time</th>
-      <th>Participations</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <div class="row">
+<div class="row">
   <% @events.each do |event| %>
     <div class="col-md-4 mb-4">
+
+      <div class="card d-flex flex-column">
+
       <div class="card">
+
 
         <div class="card-body">
           <h5 class="card-title"><%= event.name %></h5>
-          <p class="card-text"><%= event.category.sport %></p>
+          <div class="d-flex justify-content-between align-items-center">
+            <p class="card-text"><%= event.category.sport %></p>
+            <div>
+              <% if event.user.avatar.attached? %>
+                <%= cl_image_tag event.user.avatar.key, width: 45, height: 45, crop: :fill  %>
+              <% else %>
+                <%= image_tag 'avatar.png', width: 45, height: 45 %>
+              <% end %>
+            </div>
+          </div>
           <p class="card-text"><%= event.start_at %></p>
           <p class="card-text"><strong>Participants:</strong> <%= event.current_participants_count %> / <%= event.max_player %></p>
           <%= link_to 'Details', event, class: 'btn btn-primary mr-2' %>
@@ -41,6 +42,7 @@
       </div>
     </div>
   <% end %>
+</div>
 
   <div data-controller="switch">
 
