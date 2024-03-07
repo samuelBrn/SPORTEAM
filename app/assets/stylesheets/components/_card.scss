@@ -4,3 +4,36 @@
   border-radius: 50px;
   background-color: rgb(195, 209, 192);
 }
+
+.card {
+  border-radius: 15px; /* Bordures arrondies pour les cartes */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Ombre légère pour donner du relief */
+  transition: transform 0.2s; /* Animation pour le survol */
+  margin-bottom: 1.5rem; /* Espacement au-dessous de chaque carte */
+}
+
+.card:hover {
+  transform: scale(1.05); /* Effet de zoom au survol */
+}
+
+.btn-primary {
+  color: #2F2E41;
+  background: #D0FD6C;
+  border-color: #D0FD6C;
+  border-radius: 25px;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background-color: #bbe461;
+  border-color: #bbe461;
+}
+h5, .h5 {
+  font-size: 1,5rem;
+  font-weight: bolder;
+  color: #2F2E41;
+}
+
+.card-text {
+  text-align: left;
+}

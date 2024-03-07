@@ -1,22 +1,96 @@
 hi
 <h3>
-Your futur events
+Your created events
 </h3>
 <div >
+
+
 <% @events.each do |event| %>
-  <tr>
-    <td><%= event.name %></td>
-    <td><%= event.description %></td>
-    <td><%= event.category%></td>
-    <td><%= event.start_at %></td>
-    <td><%= event.end_at %></td>
-  </tr>
+
+    <% if event.created_event?(current_user) %>
+    <tr>
+    <p> You created this event 🤩</p>
+    <div class="row">
+  <% @events.each do |event| %>
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <%# Insérer l'image de l'icône de la catégorie ici %>
+        <div class="card-body">
+          <h5 class="card-title"><%= event.name %></h5>
+          <p class="card-text"><strong>Category:</strong> <%= event.category.sport %></p>
+          <p class="card-text"><strong>Starts at:</strong> <%= event.start_at %></p>
+          <p class="card-text"><strong>Participants:</strong> <%= event.current_participants_count %> / <%= event.max_player %></p>
+          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#destroy-event-<%= event.id %>">Delete</button>
+          <%= render "events/destroy_modal", event: event %>
+          <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#edit-event-<%= event.id %>">Edit</button>
+          <%= render "events/edit_modal", event: event %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+    <% else %>
+
+    <tr>
+    <p> You joined this event 🤗</p>
+
+      <td><%= event.name %></td>
+      <td><%= event.description %></td>
+      <td><%= event.category%></td>
+      <td><%= event.start_at %></td>
+      <td><%= event.end_at %></td>
+      <td><%= link_to "(x) quit this event", participation_path(current_user.find_participation_for(event)), data: {turbo_method: :delete, confirm: 'Are you sure?' } %></td>
+    </tr>
+
+    <% end %>
+
   <% end %>
 </div>
 
 <h3>
-event jou joined
+Upcoming event
 </h3>
 .
 .
 .
+<h3>
+your categories
+</h3>
+
+<% @user_favourites.each do |fav| %>
+  <p>
+    Favorite Sport: <%= fav.category.sport %>
+  </p>
+  <%= link_to "delete", favourite_path(fav.id), data: {turbo_method: :delete, confirm: 'Are you sure?' } %>
+<% end%>
+
+<h3>Update Your Profile</h3>
+
+<%= form_for(current_user, url: user_profile_path, method: :patch) do |f| %>
+  <div>
+    <%= f.label :address %><br>
+    <%= f.text_field :address %>
+  </div>
+
+  <div>
+    <%= f.label :category_ids, "Select your favorite sports" %><br>
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :sport do |b| %>
+      <%= b.check_box %> <%= b.text %><br>
+    <% end %>
+  </div>
+
+  <%= f.submit "Update" %>
+<% end %>
+
+
+
+<h4> ADD </h4>
+<div>
+  <% @other_categories.each do |cat| %>
+    <div>
+      <p><%= cat.sport %></p>
+     <%= link_to "Fav", category_favourites_path(cat), data: { turbo_method: :post } %>
+    </div>
+  <% end %>
+</div>
