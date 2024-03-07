@@ -1,9 +1,11 @@
+<body style="background-color: #E3E0F9;">
+
+<div class="container"  >
 <h2>Hello <%= current_user.first_name %></h2>
 <h3>
 Your futur events
 </h3>
 
-<div class="container"  >
   <div class="row">
     <% @events.each do |event| %>
       <div class="col-md-4 mb-4">
@@ -20,9 +22,9 @@ Your futur events
             <p class="card-text"><strong>Participants:</strong> <%= event.current_participants_count %> / <%= event.max_player %></p>
             <div class='btn-container'>
               <% if event.created_event?(current_user) %>
-                <button type="button" class="btn btn-light d-none" data-bs-toggle="modal" data-bs-target="#edit-event-<%= event.id %>" data-hover-target="appear">Edit</button>
+                <button type="button" class=" btn btn-blue btn-border d-none" data-bs-toggle="modal" data-bs-target="#edit-event-<%= event.id %>" data-hover-target="appear">Edit</button>
               <% else %>
-                <button type="button" class="btn btn-danger d-none" data-bs-toggle="modal" data-bs-target="#destroy-event-<%= event.id %>" data-hover-target="appear">Delete</button>
+                <button type="button" class="btn btn-red btn btn-Alizarin btn-border d-none" data-bs-toggle="modal" data-bs-target="#destroy-event-<%= event.id %>" data-hover-target="appear">Delete</button>
               <% end %>
             </div>
             <%= render "events/edit_modal", event: event %>
@@ -32,7 +34,7 @@ Your futur events
     <% end %>
   </div>
 </div>
-
+<div>
 <div class="container">
   <h3>your profile</h3>
   <p>Your address:</p>
@@ -45,7 +47,7 @@ Your futur events
     </p>
   <% end%>
 
-</div>
+</div class="background-div">
 
 <div class="container" data-controller="edit">
   <button data-action="click->edit#toggle" style="justify-content: right;">UPDATE</button>
@@ -76,4 +78,5 @@ Your futur events
     </div>
   </div>
 
+  </div>
 </div>
