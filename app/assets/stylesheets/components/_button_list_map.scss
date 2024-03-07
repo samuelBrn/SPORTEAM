@@ -24,8 +24,16 @@
   border-color: #995BD5;
 }
 
+#fav-toggle:checked + #category-toggle {
+  display: block;
+}
 
 .btn-light {
   background-color: #D0FD6C;
   border-radius: 20px;
+}
+
+.form-switch .form-check-input:checked {
+  background: #995BD5;
+  border-color: #D0FD6C;
 }
