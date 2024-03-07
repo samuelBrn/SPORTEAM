@@ -8,21 +8,27 @@
 
 
 
-<h1>Events</h1>
-<div style="width: 100%; height: 600px;"
-  data-controller="map"
-  data-map-markers-value="<%= @markers.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 
-<div class="row">
+<div class="container mt-3" data-controller="switch">
+
+    <div class="container mt-3 text-center">
+  <div class="btn-group" role="group" aria-label="List map toggle">
+    <button data-action="click->switch#handleClick" data-switch-toggableTarget-param="list" class="btn btn-toggle active">
+      LIST 📋
+    </button>
+    <button data-action="click->switch#handleClick" data-switch-toggableTarget-param="map" class="btn btn-toggle">
+      MAP 🌍
+    </button>
+  </div>
+</div>
+
+
+
+<div data-switch-target="cards" class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
   <% @events.each do |event| %>
     <div class="col-md-4 mb-4">
-
       <div class="card d-flex flex-column">
-
       <div class="card">
-
-
         <div class="card-body">
           <h5 class="card-title"><%= event.name %></h5>
           <div class="d-flex justify-content-between align-items-center">
@@ -42,18 +48,11 @@
       </div>
     </div>
   <% end %>
-</div>
-
-  <div data-controller="switch">
-
-  <div class="container text-center">
-    <div class="btn-group" data-switch-target="" >
-      <button data-action="click->switch#handleClick" data-switch-toggableTarget-param="list" >
-        LIST 📋
-      </button>
-      <button data-action="click->switch#handleClick" data-switch-toggableTarget-param="map" >
-        MAP 🌍
-      </button>
-
-    </div>
   </div>
+  <div style="width: 100%; height: 600px;"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+    data-switch-target="map">
+  </div>
+</div>
