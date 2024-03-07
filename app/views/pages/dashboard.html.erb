@@ -23,7 +23,6 @@
                 <%= link_to "Delete", participation_path(current_user.find_participation_for(event)), data: { hover_target: "appear", turbo_method: :delete, confirm: 'Are you sure?' }, class: "btn btn-red btn btn-Alizarin btn-border d-none" %>
               <% end %>
             </div>
-            <%= render "events/edit_modal", event: event %>
           </div>
         </div>
       </div>
@@ -74,3 +73,8 @@
     </div>
   </div>
 </div>
+
+<%# Code of ou hidden modals  %>
+<% @events.each do |event| %>
+  <%= render "events/edit_modal", event: event %>
+<% end %>
