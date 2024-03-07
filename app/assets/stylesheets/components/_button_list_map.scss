@@ -1,0 +1,25 @@
+.btn-toggle.active {
+  border-color: #995BD5;
+  background-color: #995BD5;
+  font-weight: bold;
+}
+
+.btn-toggle {
+  border: 1px solid #ced4da;
+  border-radius: 20px; /* Bordures arrondies pour les boutons */
+  padding: 10px 20px; /* Padding plus grand pour les boutons */
+  margin: 5px; /* Espacement autour des boutons */
+  width: 150px; /* Largeur plus longue pour les boutons */
+  background-color: #ffffff; /* Couleur de fond pour les boutons */
+  color: #2F2E41;
+  background-color: #D0FD6C;; /* Couleur du texte pour les boutons */
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Ombre légère pour donner du relief */
+  font-weight: bold;
+}
+
+.button.btn.btn-toggle.active, .btn-toggle:hover {
+  color: #fff;
+  background-color: #995BD5; /* Couleur de fond pour le bouton actif ou au survol */
+  border-color: #995BD5;
+}
