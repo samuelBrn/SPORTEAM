@@ -3,10 +3,9 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @user_categories_ids = current_user&.categories&.ids || []
-    if params[:category].present?
-      @category = Category.find(params[:category])
-      @events = Event.where(category_id: @category.id)
+    if user_signed_in?
+      @user_categories_ids = current_user.categories.pluck(:id)
+      @events = Event.where(category_id: @user_categories_ids)
     else
       @events = Event.all
     end
