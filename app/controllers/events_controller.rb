@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @user_categories_ids = current_user&.categories&.ids || []
@@ -27,9 +28,6 @@ class EventsController < ApplicationController
     @event = Event.new
   end
 
-  def edit
-  end
-
   def create
     @event = Event.new(event_params)
     @event.user = current_user
@@ -42,17 +40,23 @@ class EventsController < ApplicationController
     end
   end
 
+  def destroy
+    @event.destroy
+    redirect_to events_url, notice: 'Event was successfully destroyed.'
+  end
+
+  def edit
+    if current_user != @event.user
+      redirect_to @event, alert: 'You are not authorized to edit this event.'
+    end
+  end
+
   def update
     if @event.update(event_params)
       redirect_to @event, notice: 'Event was successfully updated.'
     else
       render :edit
     end
-  end
-
-  def destroy
-    @event.destroy
-    redirect_to events_url, notice: 'Event was successfully destroyed.'
   end
 
   private

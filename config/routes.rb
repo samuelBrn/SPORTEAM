@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   patch 'profile', to: 'pages#update_profile', as: :user_profile
 
 
-  resources :events, only: %i[create new index show destroy] do
+  resources :events do
     resources :participations, only: %i[new create]
     post 'participate', to: 'participations#instant_create', on: :member
   end
