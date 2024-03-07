@@ -13,3 +13,25 @@
 .btn-container {
   height: 47px;
 }
+
+.btn-primary {
+  color: #2F2E41;
+  background: #D0FD6C;
+  border-color: #D0FD6C;
+  border-radius: 25px;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background-color: #bbe461;
+  border-color: #bbe461;
+}
+h5, .h5 {
+  font-size: 1,5rem;
+  font-weight: bolder;
+  color: #2F2E41;
+}
+
+.card-text {
+  text-align: left;
+}
