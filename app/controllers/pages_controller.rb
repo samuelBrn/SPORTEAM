@@ -6,4 +6,8 @@ class PagesController < ApplicationController
 
   def design
   end
+
+  def dashboard
+    @events = current_user.events
+  end
 end

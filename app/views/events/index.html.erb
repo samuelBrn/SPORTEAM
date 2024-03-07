@@ -1,0 +1,44 @@
+<h1>Sporteam</h1>
+<p>Find people to moove your body</p>
+
+<%= form_tag(events_path, method: :get) do %>
+  <%= select_tag :category, options_for_select(Category.all.map { |c| [c.sport, c.id] }), prompt: "Select Category" %>
+  <%= submit_tag "Filter" %>
+<% end %>
+
+<h1>Events</h1>
+<div style="width: 100%; height: 600px;"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Category</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+      <th>Participations</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= event.name %></td>
+        <td><%= event.description %></td>
+        <td><%= event.category.sport %></td>
+        <td><%= event.start_at %></td>
+        <td><%= event.end_at %></td>
+        <td><%= link_to 'Show', event %></td>
+        <td><%= link_to 'Edit', event_path(event) %></td>
+        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Event', new_event_path %>
