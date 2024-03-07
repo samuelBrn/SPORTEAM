@@ -3,7 +3,7 @@
 Your futur events
 </h3>
 
-<div class="container" >
+<div class="container" data-controller="edit" >
   <div class="row">
     <% @events.each do |event| %>
       <% if event.created_event?(current_user) %>
@@ -41,53 +41,48 @@ Your futur events
 </div>
 
 <div class="container">
-  <h3>
-  your profile
-  </h3>
-
+  <h3>your profile</h3>
+  <p>Your address:</p>
+<%= current_user.first_name %>
+<%= current_user.last_name %>
+<%= current_user.address %>
+<th>
+  <p>Favorite Sport:</p>
   <% @user_favourites.each do |fav| %>
     <p>
-      Favorite Sport: <%= fav.category.sport %>
+       <%= fav.category.sport %>
     </p>
   <% end%>
 
-
-
-  <h4> your categories </h4>
-  <div>
-    <% @other_categories.each do |cat| %>
-      <div>
-        <p><%= cat.sport %></p>
-      <%= link_to "Fav", category_favourites_path(cat), data: { turbo_method: :post } %>
-      </div>
-    <% end %>
-  </div>
 </div>
 
-<div class="container">
-  <h4>update your profile</h4>
-  <% @user_favourites.each do |fav| %>
-    <p>
-      Favorite Sport: <%= fav.category.sport %>
-    </p>
-    <%= link_to "delete", favourite_path(fav.id), data: {turbo_method: :delete, confirm: 'Are you sure?' } %>
-  <% end%>
-
-  <div>
-  <%= form_for(current_user, url: user_profile_path, method: :patch) do |f| %>
+<div class="container" data-controller="edit">
+  <button data-action="click->edit#toggle">UPDATE</button>
+  <div class="container d-none" data-edit-target="toEdit">
+    <h4>update your profile</h4>
+      <% @user_favourites.each do |fav| %>
+        <p>
+          Favorite Sport: <%= fav.category.sport %>
+        <%# </p>
+        <%= link_to "delete", favourite_path(fav.id), data: {turbo_method: :delete, confirm: 'Are you sure?' } %> %>
+      <% end%>
     <div>
-      <%= f.label :address, notice: 'Your address was successfully updated.'%><br>
-      <%= f.text_field :address %>
-    </div>
+      <%= form_for(current_user, url: user_profile_path, method: :patch) do |f| %>
+        <div>
+          <%= f.label :address, notice: 'Your address was successfully updated.'%><br>
+          <%= f.text_field :address %>
+        </div>
 
-    <div>
-      <%= f.label :category_ids, "Select your favorite sports" %><br>
-      <%= f.collection_check_boxes :category_ids, Category.all, :id, :sport do |b| %>
-        <%= b.check_box %> <%= b.text %><br>
+        <div>
+          <%= f.label :category_ids, "Select your favorite sports" %><br>
+          <%= f.collection_check_boxes :category_ids, Category.all, :id, :sport do |b| %>
+            <%= b.check_box %> <%= b.text %><br>
+          <% end %>
+        </div>
+
+        <%= f.submit "Save" %>
       <% end %>
     </div>
-
-    <%= f.submit "Update" %>
-  <% end %>
   </div>
+
 </div>
