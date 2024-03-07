@@ -3,39 +3,32 @@
 Your futur events
 </h3>
 
-<div class="container" data-controller="edit" >
+<div class="container"  >
   <div class="row">
     <% @events.each do |event| %>
-      <% if event.created_event?(current_user) %>
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <%# Insérer l'image de l'icône de la catégorie ici %>
-            <div class="card-body">
+      <div class="col-md-4 mb-4">
+        <div class="card" data-controller="hover">
+          <%# Insérer l'image de l'icône de la catégorie ici %>
+          <div class="card-body" data-action="mouseenter->hover#see mouseleave->hover#hide">
+            <% if event.created_event?(current_user) %>
               <h5 class="card-title"><%= event.name%> You created this event</h5>
-              <p class="card-text"><strong>Category:</strong> <%= event.category.sport %></p>
-              <p class="card-text"><strong>Starts at:</strong> <%= event.start_at %></p>
-              <p class="card-text"><strong>Participants:</strong> <%= event.current_participants_count %> / <%= event.max_player %></p>
-              <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#edit-event-<%= event.id %>">Edit</button>
-              <%= render "events/edit_modal", event: event %>
-            </div>
-          </div>
-        </div>
-        <% else %>
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <%# Insérer l'image de l'icône de la catégorie ici %>
-            <div class="card-body">
+            <% else %>
               <h5 class="card-title"><%= event.name%> You joined this event</h5>
-              <p class="card-text"><strong>Category:</strong> <%= event.category.sport %></p>
-              <p class="card-text"><strong>Starts at:</strong> <%= event.start_at %></p>
-              <p class="card-text"><strong>Participants:</strong> <%= event.current_participants_count %> / <%= event.max_player %></p>
-              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#destroy-event-<%= event.id %>">Delete</button>
-              <%= render "events/destroy_modal", event: event %>
-
+            <% end %>
+            <p class="card-text"><strong>Category:</strong> <%= event.category.sport %></p>
+            <p class="card-text"><strong>Starts at:</strong> <%= event.start_at %></p>
+            <p class="card-text"><strong>Participants:</strong> <%= event.current_participants_count %> / <%= event.max_player %></p>
+            <div class='btn-container'>
+              <% if event.created_event?(current_user) %>
+                <button type="button" class="btn btn-light d-none" data-bs-toggle="modal" data-bs-target="#edit-event-<%= event.id %>" data-hover-target="appear">Edit</button>
+              <% else %>
+                <button type="button" class="btn btn-danger d-none" data-bs-toggle="modal" data-bs-target="#destroy-event-<%= event.id %>" data-hover-target="appear">Delete</button>
+              <% end %>
             </div>
+            <%= render "events/edit_modal", event: event %>
           </div>
         </div>
-      <% end %>
+      </div>
     <% end %>
   </div>
 </div>
@@ -43,10 +36,8 @@ Your futur events
 <div class="container">
   <h3>your profile</h3>
   <p>Your address:</p>
-<%= current_user.first_name %>
-<%= current_user.last_name %>
-<%= current_user.address %>
-<th>
+  <%= current_user.address %>
+
   <p>Favorite Sport:</p>
   <% @user_favourites.each do |fav| %>
     <p>
@@ -57,7 +48,7 @@ Your futur events
 </div>
 
 <div class="container" data-controller="edit">
-  <button data-action="click->edit#toggle">UPDATE</button>
+  <button data-action="click->edit#toggle" style="justify-content: right;">UPDATE</button>
   <div class="container d-none" data-edit-target="toEdit">
     <h4>update your profile</h4>
       <% @user_favourites.each do |fav| %>
