@@ -1,5 +1,5 @@
 <h1>SporTeam</h1>
-<p>Find people to moove your body</p>
+<p>Meet new people to move your body 💪🏻🏆</p>
 
 <div data-controller="myfavs">
 <%= form_tag(events_path, method: :get) do %>
@@ -19,17 +19,16 @@
 </div>
 
 <div data-controller="switch">
-
-    <div class="container mt-3 text-center">
-  <div class="btn-group" role="group" aria-label="List map toggle">
-    <button data-action="click->switch#handleClick" data-switch-toggableTarget-param="list" class="btn btn-toggle active">
-      MAP 📋
-    </button>
-    <button data-action="click->switch#handleClick" data-switch-toggableTarget-param="map" class="btn btn-toggle">
-      LIST 🌍
-    </button>
+  <div class="container mt-3 text-center">
+    <div class="btn-group" role="group" aria-label="List map toggle">
+      <button data-action="click->switch#handleClick" data-switch-toggableTarget-param="cards" class="btn btn-toggle active">
+        MAP 📋
+      </button>
+      <button data-action="click->switch#handleClick" data-switch-toggableTarget-param="map" class="btn btn-toggle">
+        LIST 🌍
+      </button>
+    </div>
   </div>
-</div>
 
 <div style="width: 100%; height: 600px;"
     data-controller="map"
@@ -40,7 +39,7 @@
 
 <div data-switch-target="cards" class="d-none row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
   <% @events.each do |event| %>
-    <div class="col-md-4 mb-4">
+    <div class="col mx-auto">
       <div class="d-flex flex-column">
       <div class="card">
         <div class="card-body">
