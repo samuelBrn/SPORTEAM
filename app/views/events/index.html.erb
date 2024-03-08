@@ -65,3 +65,7 @@
   </div>
 </div>
 </div>
+
+<% @events.each do |event| %>
+  <%= render "events/show_modal", event: event %>
+<% end %>
