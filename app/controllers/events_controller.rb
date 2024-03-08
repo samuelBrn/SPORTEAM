@@ -19,6 +19,7 @@ class EventsController < ApplicationController
           image: view_context.asset_path("#{event.category.sport.downcase}.png"),
           lat: event.latitude,
           lng: event.longitude,
+          event_id: event.id,
           info_window_html: render_to_string(partial: "info_window", locals: { event: event })
           # Assurez-vous que le chemin de l'icône de catégorie est correct et que le fichier existe.
           # image: view_context.asset_path("#{event.category.sport.downcase}.png")
