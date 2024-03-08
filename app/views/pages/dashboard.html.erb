@@ -1,41 +1,54 @@
 <div class="container">
   <h2>Hello <%= current_user.first_name %></h2>
-  <h3>Your futur events</h3>
-
+  <h3>Your created events💪</h3>
   <div class="row">
     <% @events.each do |event| %>
-      <div class="col-md-4 mb-4">
-        <div class="card" data-controller="hover">
-          <%# Insérer l'image de l'icône de la catégorie ici %>
-          <div class="card-body" data-action="mouseenter->hover#see mouseleave->hover#hide">
-            <% if event.created_event?(current_user) %>
-              <h5 class="card-title"><%= event.name%> You created this event</h5>
-            <% else %>
-              <h5 class="card-title"><%= event.name%> You joined this event</h5>
-            <% end %>
-            <p class="card-text"><strong>Category:</strong> <%= event.category.sport %></p>
-            <p class="card-text"><strong>Starts at:</strong> <%= event.start_at %></p>
-            <p class="card-text"><strong>Participants:</strong> <%= event.current_participants_count %> / <%= event.max_player %></p>
-            <div class='btn-container'>
-              <% if event.created_event?(current_user) %>
-                <button type="button" class=" btn btn-blue btn-border d-none" data-bs-toggle="modal" data-bs-target="#edit-event-<%= event.id %>" data-hover-target="appear">Edit</button>
-              <% else %>
-                <%= link_to "Delete", participation_path(current_user.find_participation_for(event)), data: { hover_target: "appear", turbo_method: :delete, confirm: 'Are you sure?' }, class: "btn btn-red btn btn-Alizarin btn-border d-none" %>
-              <% end %>
+      <% if event.created_event?(current_user) %>
+        <div class="col-md-4 mb-4">
+          <div class="card" data-controller="hover">
+            <%# Insérer l'image de l'icône de la catégorie ici %>
+            <div class="card-body" data-action="mouseenter->hover#see mouseleave->hover#hide">
+              <h5 class="card-title"><%= event.name %></h5>
+              <p class="card-text"><strong>Category:</strong> <%= event.category.sport %></p>
+              <p class="card-text"><strong>Starts at:</strong> <%= event.start_at %></p>
+              <p class="card-text"><strong>Participants:</strong> <%= event.current_participants_count %> / <%= event.max_player %></p>
+              <div class='btn-container'>
+                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#edit-event-<%= event.id %>">Update</button>
+                <%= link_to "Delete Event", participation_path(current_user.find_participation_for(event)), data: { bs_toggle: "modal", bs_target: "#destroy-event-#{event.id}", turbo_method: :delete, confirm: 'Are you sure?' }, class: "btn btn-light" %>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <h3> Events you join😎</h3>
+  <div class="row">
+    <% @events.each do |event| %>
+      <% unless event.created_event?(current_user) %>
+        <div class="col-md-4 mb-4">
+          <div class="card" data-controller="hover">
+            <%# Insérer l'image de l'icône de la catégorie ici %>
+            <div class="card-body" data-action="mouseenter->hover#see mouseleave->hover#hide">
+              <h5 class="card-title"><%= event.name %></h5>
+              <p class="card-text"><strong>Category:</strong> <%= event.category.sport %></p>
+              <p class="card-text"><strong>Starts at:</strong> <%= event.start_at %></p>
+              <p class="card-text"><strong>Participants:</strong> <%= event.current_participants_count %> / <%= event.max_player %></p>
+              <div class='btn-container'>
+                <%= link_to "Cancel Event", participation_path(current_user.find_participation_for(event)), data: { bs_toggle: "modal", bs_target: "#destroy-event-#{event.id}", turbo_method: :delete, confirm: 'Are you sure?' }, class: "btn btn-light" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>
 
 <div class="container">
-  <h3>your profile</h3>
-  <p>Your address:</p>
-  <%= current_user.address %>
-
-  <p>Favorite Sport:</p>
+  <h3>My profile</h3>
+  <p>Favorite Sports🖤</p>
   <% @user_favourites.each do |fav| %>
     <p>
       <%= fav.category.sport %>
@@ -44,14 +57,14 @@
 </div>
 
 <div class="container background-div" data-controller="edit">
-  <button data-action="click->edit#toggle" style="justify-content: right;">UPDATE</button>
+  <button data-action="click->edit#toggle" style="justify-content: right;">Update</button>
   <div class="container d-none" data-edit-target="toEdit">
     <h4>update your profile</h4>
     <% @user_favourites.each do |fav| %>
       <p>
         Favorite Sport: <%= fav.category.sport %>
       </p>
-      <%#= link_to "delete", favourite_path(fav.id), data: {turbo_method: :delete, confirm: 'Are you sure?' } %>
+      <%= link_to "delete", favourite_path(fav.id), data: {turbo_method: :delete, confirm: 'Are you sure?' } %>
     <% end %>
 
     <div>
@@ -74,7 +87,8 @@
   </div>
 </div>
 
-<%# Code of ou hidden modals  %>
+<%# Code of our hidden modals  %>
 <% @events.each do |event| %>
   <%= render "events/edit_modal", event: event %>
+  <%= render 'events/destroy_modal', event: event %>
 <% end %>
