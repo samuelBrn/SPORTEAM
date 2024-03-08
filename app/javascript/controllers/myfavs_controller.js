@@ -1,11 +1,11 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["categories"];
+  static targets = ["categories", 'submit'];
 
-  toggle(evt) {
+  filter(evt) {
     evt.preventDefault();
-
-    this.categoriesTarget.classList.toggle('d-none');
+    console.log(evt)
+    this.submitTarget.click();
   }
 }
