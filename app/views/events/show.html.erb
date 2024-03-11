@@ -21,15 +21,6 @@
 
 
 
-<p>
-  <strong>Start Time:</strong>
-  <%= @event.start_at %>
-</p>
-
-<p>
-  <strong>End Time:</strong>
-  <%= @event.end_at %>
-</p>
 
 <%= button_to 'Back', events_path, method: :get, class: "btn btn-light" %>
 <% if @event.participations.count < @event.max_player %>
