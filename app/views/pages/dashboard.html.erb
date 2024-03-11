@@ -1,5 +1,98 @@
+
+
+ <div class="welcome-container">
+  <h1>Hello, welcome back!</h1>
+  <p class="event-count">You went to <%= current_user.events_this_month.count %> events this month!</p>
+  <h2 class="upcoming-schedule">Your upcoming schedule:</h2>
+    <!-- Le reste du contenu ira ici -->
+
+  </div>
+
+
+<div class="container schedule-container">
+  <div class="row">
+    <!-- Prochain événement -->
+    <div class="col-6 card-container">
+     <div class="card">
+    <% if @next_event %>
+      <%= image_tag @next_event.category.image, alt: @next_event.category.sport, class: 'card-img-top' %>
+      <div class="card-body">
+        <p>You have <%= @next_event.category.sport %> on <%= @next_event.start_at.strftime("%A %B %e") %></p>
+      </div>
+    <% else %>
+      <p>No upcoming events</p>
+    <% end %>
+  </div>
+    </div>
+
+    <!-- Préférences -->
+    <div class="col-6 card-container">
+      <div class="card">
+        <div class="card-body">
+          <p>Your preferences</p>
+          <% current_user.favourite_categories.each do |category| %>
+            <span><%= category.sport %></span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <!-- Recherche -->
+    <div class="col-6 card-container">
+      <div class="card">
+        <div class="card-body">
+          <%= link_to "Search", events_path, class: "search-link" %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Case vide pour le moment -->
+    <div class="col-6 card-container">
+      <div class="card">
+        <div class="card-body">
+          <!-- Contenu à définir plus tard -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="container">
-  <h2>Hello <%= current_user.first_name %></h2>
   <h3>Your created events💪</h3>
   <div class="row">
     <% @events.each do |event| %>
