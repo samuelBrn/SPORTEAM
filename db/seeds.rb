@@ -135,7 +135,7 @@ adresses_paris_yoga.each_with_index do |adresse, index|
       category_id: yoga_cat.id,
       name: terrain_name_yoga[index],
       adress: adresse,
-      start_at: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default),
+      start_at: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
       end_at: Faker::Time.between(from: DateTime.now, to: DateTime.now + 1, format: :default),
       status: ["planned", "ongoing", "completed"].sample,
       max_player: rand(5..20),
