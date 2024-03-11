@@ -7,7 +7,6 @@ class EventsController < ApplicationController
 
       # Si l'utilisateur est connecté, limiter d'abord les événements à ses catégories favorites
       @events = @events.where(category_id: current_user.categories.pluck(:id)) if user_signed_in?
-
       # Si des catégories sont sélectionnées via le formulaire, filtrer par ces catégories
       if params[:categories].present?
         @events = @events.where(category_id: params[:categories])
@@ -25,6 +24,7 @@ class EventsController < ApplicationController
           # image: view_context.asset_path("#{event.category.sport.downcase}.png")
         }
       end
+
     end
 
     def search
