@@ -15,4 +15,6 @@ class Event < ApplicationRecord
     @participation_first = participations.first
     @participation_first.user_id == user.id
   end
+
+  
 end
