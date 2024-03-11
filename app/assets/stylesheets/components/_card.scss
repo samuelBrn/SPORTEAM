@@ -13,7 +13,12 @@
 }
 
 .card:hover {
-  transform: scale(1.05); /* Effet de zoom au survol */
+  transform: scale(1.05);
+  border: 4px solid #D0FD6C; /* Effet de zoom au survol */
+}
+
+.btn-container {
+  height: 47px;
 }
 
 .btn-primary {

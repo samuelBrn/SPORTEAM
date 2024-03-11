@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 
 <p>
   <strong>Name:</strong>
@@ -32,7 +31,7 @@
   <%= @event.end_at %>
 </p>
 
-<%= link_to 'Back', events_path %>
+<%= button_to 'Back', events_path, method: :get, class: "btn btn-light" %>
 <% if @event.participations.count < @event.max_player %>
   <%= button_to 'Participer', participate_event_path(@event), method: :post, class: 'btn btn-primary' %>
 <% else %>

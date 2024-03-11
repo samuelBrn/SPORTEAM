@@ -1,0 +1,24 @@
+<div style="justify-content: space-between;"class=" modal fade" id="event-<%= event.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+          <h5 class="card-title"><%= event.name %></h5>
+          <div class="d-flex justify-content-between align-items-center">
+            <p class="card-text"><%= event.category.sport %></p>
+            <div>
+              <% if event.user.avatar.attached? %>
+                <%= cl_image_tag event.user.avatar.key, width: 45, height: 45, crop: :fill  %>
+              <% else %>
+                <%= image_tag 'avatar.png', width: 45, height: 45 %>
+              <% end %>
+            </div>
+          </div>
+          <p class="card-text"><%= event.start_at %></p>
+          <p class="card-text"><strong>Participants:</strong> <%= event.current_participants_count %> / <%= event.max_player %></p>
+          <div class="d-flex justify-content-center">
+          <%= link_to 'Details', event, class: 'btn btn-primary mr-2' %>
+          </div>
+        </div>
+
+    </div>
+  </div>
+</div>

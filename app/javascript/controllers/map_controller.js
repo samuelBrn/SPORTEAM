@@ -30,20 +30,22 @@ export default class extends Controller {
 
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {
-      const popup = new mapboxgl.Popup().setHTML(marker.info_window_html) // Add this
+      // const popup = new mapboxgl.Popup().setHTML(marker.info_window_html) // Add this
 
       const div = document.createElement('div');
       div.style.height = '40px'
       div.style.width = '40px'
       div.style.backgroundPosition = 'center';
       div.style.backgroundSize = 'cover';
-      div.style.backgroundImage = `url(${marker.image})`
+      div.style.backgroundImage = `url(${marker.image})`;
+      div.dataset.bsToggle = "modal";
+      div.dataset.bsTarget = `#event-${marker.event_id}`;
 
       console.log(div)
 
       new mapboxgl.Marker(div)
         .setLngLat([ marker.lng, marker.lat ])
-        .setPopup(popup) // Add this
+        // .setPopup(popup) // Add this
         .addTo(this.map)
     });
   }
