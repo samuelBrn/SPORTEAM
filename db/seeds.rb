@@ -101,3 +101,38 @@ Event.all.each do |e|
 end
 
 puts 'Nouvelles données créées avec succès !'
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+adresses_paris_basketball = [
+  "9 rue Charlemagne, 75004 Paris",
+  "68 boulevard poniatowski, 75012 Paris",
+  "176 Boulevard Macdonald, 75019 Paris",
+  "61 boulevard Vincent Auriol75013 Paris",
+]
+terrain_name = [
+  "Terrain de basket du square Claude Bernard"
+  "Terrain de basket-ball 3*3 Stalingrad"
+  "Terrain de Basket-ball 3*3 Léo Lagrange"
+  "Terrain de sport des jardins Saint-Paul"
+]
+
+adresses_paris_basketball.each_with_index do |adresse, index|
+  terrain_name.each do |name|
+    eventBasketball = Event.create!(
+      user: User.all.sample,
+      category_id: Category.all.sample.id,
+      name: terrain_name.,
+      adress: adresse,
+      start_at: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default),
+      end_at: Faker::Time.between(from: DateTime.now, to: DateTime.now + 1, format: :default),
+      status: ["planned", "ongoing", "completed"].sample,
+      max_player: rand(5..20),
+      min_player: rand(2..5),
+      description: Faker::Lorem.sentence(word_count: 10)
+    )
+
+  image_url = Faker::LoremFlickr.image(size: "300x300", search_terms: ['sport']) + "?random=#{index}"
+  file = URI.open(image_url)
+  event.image.attach(io: file, filename: "event_#{index + 1}.png", content_type: "image/png")
+  end
+end

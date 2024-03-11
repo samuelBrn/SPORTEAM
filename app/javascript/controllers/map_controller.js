@@ -1,12 +1,4 @@
 
-
-
-
-
-
-
-
-
 import { Controller } from "@hotwired/stimulus"
 import mapboxgl from 'mapbox-gl' // Don't forget this!
 
