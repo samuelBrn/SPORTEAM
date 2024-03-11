@@ -36,7 +36,7 @@
               <p class="card-text"><strong>Starts at:</strong> <%= event.start_at %></p>
               <p class="card-text"><strong>Participants:</strong> <%= event.current_participants_count %> / <%= event.max_player %></p>
               <div class='btn-container'>
-                <%= link_to "Cancel Event", participation_path(current_user.find_participation_for(event)), data: { bs_toggle: "modal", bs_target: "#destroy-event-#{event.id}", turbo_method: :delete, confirm: 'Are you sure?' }, class: "btn btn-light" %>
+                <%= link_to "Cancel Participation", participation_path(current_user.find_participation_for(event)), data: { bs_toggle: "modal", bs_target: "#destroy-event-#{event.id}", turbo_method: :delete, confirm: 'Are you sure?' }, class: "btn btn-light" %>
               </div>
             </div>
           </div>
