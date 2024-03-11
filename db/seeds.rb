@@ -29,7 +29,6 @@ football_cat = Category.create(sport: 'Football')
 yoga_cat = Category.create(sport: 'Yoga')
 basket_cat = Category.create(sport: 'Basketball')
 
-
 # # Création de quelques utilisateurs
 10.times do
   user = User.create!(
@@ -53,6 +52,7 @@ current_user = User.create!(
   phone_number: Faker::PhoneNumber.phone_number,
   age: rand(25..40)
 )
+puts " Création d'event basketball..."
 
 adresses_paris_basketball = [
   "22 Rue Duperré, 75009 Paris",
@@ -68,7 +68,7 @@ terrain_name_basketball = [
 ]
 
 adresses_paris_basketball.each_with_index do |adresse, index|
-    event_Basketball = Event.create!(
+  event_basketball = Event.create!(
       user: User.all.sample,
       category_id: basket_cat.id,
       name: terrain_name_basketball[index],
@@ -81,9 +81,12 @@ adresses_paris_basketball.each_with_index do |adresse, index|
       description: Faker::Lorem.sentence(word_count: 10)
     )
   image_path = Rails.root.join("app", "assets", "images", "event_#{index + 1}.png")
-  event_Basketball.image.attach(io: File.open(image_path), filename: "event_#{index + 1}.png", content_type: "image/png")
+  event_basketball.image.attach(io: File.open(image_path), filename: "event_#{index + 1}.png", content_type: "image/png")
 
 end
+
+puts " Création d'event football..."
+
 
 adresses_paris_football = [
   "68 Bd Poniatowski, 75012 Paris",
@@ -99,7 +102,7 @@ terrain_name_football = [
 ]
 
 adresses_paris_football.each_with_index do |adresse, index|
-    event_football = Event.create!(
+  event_football = Event.create!(
       user: User.all.sample,
       category_id: football_cat.id,
       name: terrain_name_football[index],
@@ -116,6 +119,8 @@ adresses_paris_football.each_with_index do |adresse, index|
 
 end
 
+puts " Création d'event yoga..."
+
 adresses_paris_yoga = [
   "68 Rue Jean-Jacques Rousseau, 75001 Paris",
   "90 Bd Richard-Lenoir, 75011 Paris",
@@ -130,7 +135,7 @@ terrain_name_yoga = [
 ]
 
 adresses_paris_yoga.each_with_index do |adresse, index|
-    event_yoga = Event.create!(
+  event_yoga = Event.create!(
       user: User.all.sample,
       category_id: yoga_cat.id,
       name: terrain_name_yoga[index],
