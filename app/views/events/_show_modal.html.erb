@@ -14,7 +14,7 @@
             <%= cl_image_tag event.image.key, height: 150, width: 170, crop: :fill, radius: 10 %>
 
             <div>
-            <p class="card-text"><%= event.category.sport %></p>
+            <h5 class="card-text"><%= event.category.sport %></h5>
           <p class="card-text"><%= event.start_at %></p>
           <p class="card-text"><strong>Participants:</strong> <%= event.current_participants_count %> / <%= event.max_player %></p>
 

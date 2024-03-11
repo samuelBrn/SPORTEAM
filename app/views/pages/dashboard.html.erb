@@ -14,7 +14,8 @@
               <p class="card-text"><strong>Participants:</strong> <%= event.current_participants_count %> / <%= event.max_player %></p>
               <div class='btn-container'>
                 <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#edit-event-<%= event.id %>">Update</button>
-                <%= link_to "Delete Event", participation_path(current_user.find_participation_for(event)), data: { bs_toggle: "modal", bs_target: "#destroy-event-#{event.id}", turbo_method: :delete, confirm: 'Are you sure?' }, class: "btn btn-light" %>
+                <% participation = Participation.find_by(user: current_user, event: event) %>
+                <%= link_to "Delete Event", participation_path(participation), data: { bs_toggle: "modal", bs_target: "#destroy-participation-#{event.id}", turbo_method: :delete, confirm: 'Are you sure?' }, class: "btn btn-light" %>
               </div>
             </div>
           </div>
@@ -36,7 +37,8 @@
               <p class="card-text"><strong>Starts at:</strong> <%= event.start_at %></p>
               <p class="card-text"><strong>Participants:</strong> <%= event.current_participants_count %> / <%= event.max_player %></p>
               <div class='btn-container'>
-                <%= link_to "Cancel Participation", participation_path(current_user.find_participation_for(event)), data: { bs_toggle: "modal", bs_target: "#destroy-event-#{event.id}", turbo_method: :delete, confirm: 'Are you sure?' }, class: "btn btn-light" %>
+              <% participation = Participation.find_by(user: current_user, event: event) %>
+                <%= link_to "Cancel coucou", participation_path(participation), data: { bs_toggle: "modal", bs_target: "#destroy-participation-#{event.id}", turbo_method: :delete, confirm: 'Are you sure?' }, class: "btn btn-light" %>
               </div>
             </div>
           </div>
@@ -91,4 +93,5 @@
 <% @events.each do |event| %>
   <%= render "events/edit_modal", event: event %>
   <%= render 'events/destroy_modal', event: event %>
+  <%= render 'events/destroy_participation', event: event %>
 <% end %>
