@@ -12,18 +12,6 @@
   <% end %>
 </div>
 
-<div data-controller="switch">
-  <div class="container mt-3 text-center">
-    <div class="btn-group" role="group" aria-label="List map toggle">
-      <button data-action="click->switch#handleClick" data-switch-toggableTarget-param="cards" class="btn btn-toggle active">
-        MAP 📋
-      </button>
-      <button data-action="click->switch#handleClick" data-switch-toggableTarget-param="map" class="btn btn-toggle">
-        LIST 🌍
-      </button>
-    </div>
-  </div>
-
 <div style="width: 100%; height: 600px;"
     data-controller="map"
     data-map-markers-value="<%= @markers.to_json %>"

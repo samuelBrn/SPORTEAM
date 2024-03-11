@@ -1,0 +1,17 @@
+<div class="search-form">
+  <%= form_tag(search_events_path, method: :get, class: "search-form-inner") do %>
+    <div class="mb-3">
+      <%= label_tag :query, "Search:", class: "form-label" %>
+      <%= text_field_tag :query, nil, class: "form-control", placeholder: "Enter search query..." %>
+    </div>
+    <div class="mb-3">
+      <%= label_tag :location, "Location:", class: "form-label" %>
+      <%= text_field_tag :location, nil, class: "form-control", placeholder: "Enter location..." %>
+    </div>
+    <div class="mb-3">
+      <%= label_tag :category, "Category:", class: "form-label" %>
+      <%= text_field_tag :category, nil, class: "form-control", placeholder: "Enter category..." %>
+    </div>
+    <%= submit_tag "Search", class: "btn btn-primary" %>
+  <% end %>
+</div>

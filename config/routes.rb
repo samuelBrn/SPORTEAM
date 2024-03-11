@@ -10,6 +10,9 @@ Rails.application.routes.draw do
 
   resources :events do
     resources :participations, only: %i[new create]
+    collection do
+      get "search"
+    end
     post 'participate', to: 'participations#instant_create', on: :member
   end
 

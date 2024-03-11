@@ -3,11 +3,15 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-bottom">
   <div class="container-fluid">
     <%= link_to events_path , class: "navbar-brand navbar-logo" do %>
-      <%= image_tag "logo.png" %>
+     <i class="fa-solid fa-house"></i>
     <% end %>
 
     <%= link_to dashboard_path, class: "" do %>
-      <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar" %>
+     <i class="fa-solid fa-user"></i>
+    <% end %>
+
+    <%= link_to search_events_path, class: "nav-link search-toggle" do %>
+      <i class="fa-solid fa-magnifying-glass"></i>
     <% end %>
 
     <%= link_to new_event_path, class: "nav-link add-btn" do %>
