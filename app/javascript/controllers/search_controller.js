@@ -1,7 +1,9 @@
-import { Controller } from "stimulus";
+import { Controller } from "@hotwired/stimulus"
 
+// Connects to data-controller="search"
 export default class extends Controller {
-  toggleSearch() {
+  connect() {
     document.querySelector(".search-form").classList.toggle("active");
   }
+
 }
