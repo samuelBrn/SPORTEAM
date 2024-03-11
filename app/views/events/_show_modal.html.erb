@@ -1,9 +1,13 @@
-<div style="justify-content: space-between;"class=" modal fade" id="event-<%= event.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-          <h5 class="card-title"><%= event.name %></h5>
+<%# <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Toggle bottom offcanvas</button> %>
+
+<div class="offcanvas offcanvas-bottom round-top" tabindex="-1" id="event-<%= event.id %>" aria-labelledby="offcanvasBottomLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasBottomLabel"><%= event.name %></h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body small">
+      <h5 class="card-title"></h5>
           <div class="d-flex justify-content-between align-items-center">
-            <p class="card-text"><%= event.category.sport %></p>
             <div>
               <% if event.user.avatar.attached? %>
                 <%= cl_image_tag event.user.avatar.key, width: 45, height: 45, crop: :fill  %>
@@ -11,14 +15,14 @@
                 <%= image_tag 'avatar.png', width: 45, height: 45 %>
               <% end %>
             </div>
-          </div>
+            <%= cl_image_tag event.image.key, height: 150, width: 170, crop: :fill  %>
+
+            <div>
+            <p class="card-text"><%= event.category.sport %></p>
           <p class="card-text"><%= event.start_at %></p>
           <p class="card-text"><strong>Participants:</strong> <%= event.current_participants_count %> / <%= event.max_player %></p>
-          <div class="d-flex justify-content-center">
-          <%= link_to 'Details', event, class: 'btn btn-primary mr-2' %>
-          </div>
-        </div>
 
-    </div>
+            </div>
+          </div>
   </div>
 </div>
