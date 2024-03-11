@@ -7,6 +7,9 @@ class PagesController < ApplicationController
   def design
   end
 
+  def profile
+  end
+
   def dashboard
     @events = current_user.events
     @user_favourites = current_user.favourites
