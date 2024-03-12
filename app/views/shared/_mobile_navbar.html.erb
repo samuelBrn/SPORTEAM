@@ -2,22 +2,20 @@
 
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-bottom">
   <div class="container-fluid">
-    <%= link_to events_path , class: "navbar-brand navbar-logo" do %>
-     <i class="fa-solid fa-house"></i>
+    <%= link_to events_path , class: "nav-link search-toggle" do %>
+      <%= image_tag "home.png", width: "12px", height: "12px"%>
     <% end %>
 
-    <%= link_to dashboard_path, class: "" do %>
-     <i class="fa-solid fa-user"></i>
+    <%= link_to dashboard_path, class: "nav-link search-toggle" do %>
+      <%= image_tag "dashboard.png", width: "12px", height: "12px" %>
     <% end %>
-
-    <%# <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Toggle bottom offcanvas</button> %>
 
     <%= link_to "#", class: "nav-link search-toggle", data: { bs_toggle: "offcanvas", bs_target: "#search-event" } do %>
       <i class="fa-solid fa-magnifying-glass"></i>
     <% end %>
 
-    <%= link_to new_event_path, class: "nav-link add-btn" do %>
-      <i class="fa-solid fa-circle-plus"></i>
+    <%= link_to new_event_path, class: "nav-link search-toggle" do %>
+    <%= image_tag "plus.png", width: "12px", height: "12px" %>
     <% end %>
   </div>
 </div>

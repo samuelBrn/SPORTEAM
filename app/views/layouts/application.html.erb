@@ -13,11 +13,11 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body style="background-color: FAF6F0;">
+  <body class="<%= controller_name %>-<%= action_name %>">
     <%= render "shared/flashes" %>
 
     <%= yield %>
-    <%= render "shared/mobile_navbar" %>
+    <%= render "shared/mobile_navbar" unless action_name == "home" %>
     <%= render "shared/search_modal" %>
   </body>
 </html>

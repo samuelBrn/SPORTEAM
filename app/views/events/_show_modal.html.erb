@@ -9,20 +9,22 @@
       <h5 class="card-title"></h5>
           <div class="d-flex justify-content-between align-items-center">
             <div>
-              <% if event.user.avatar.attached? %>
-                <%= cl_image_tag event.user.avatar.key, width: 45, height: 45, crop: :fill  %>
-              <% else %>
-                <%= image_tag 'avatar.png', width: 45, height: 45 %>
-              <% end %>
+
             </div>
-            <%= cl_image_tag event.image.key, height: 150, width: 170, crop: :fill  %>
+            <%= cl_image_tag event.image.key, height: 150, width: 170, crop: :fill, radius: 10 %>
 
             <div>
-            <p class="card-text"><%= event.category.sport %></p>
+            <h5 class="card-text"><%= event.category.sport %></h5>
           <p class="card-text"><%= event.start_at %></p>
           <p class="card-text"><strong>Participants:</strong> <%= event.current_participants_count %> / <%= event.max_player %></p>
 
+          <% if event.participations.count < event.max_player %>
+          <%= button_to 'Join 😎', participate_event_path(event), method: :post, class: 'align-items-center btn btn-primary' %>
+        <% else %>
+          <p>Cet événement a déjà atteint le nombre maximum de participants.</p>
+        <% end %>
             </div>
           </div>
   </div>
+</div>
 </div>

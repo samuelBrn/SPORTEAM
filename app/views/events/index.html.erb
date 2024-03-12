@@ -1,4 +1,6 @@
-<div style="width: 100%; height: 600px;"
+
+
+<div style="width: 100%; height: 900px;"
     data-controller="map"
     data-map-markers-value="<%= @markers.to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
@@ -13,7 +15,7 @@
         <div class="card-body">
           <h5 class="card-title"><%= event.name %></h5>
           <div class="d-flex justify-content-between align-items-center">
-            <p class="card-text"><%= event.category.sport %></p>
+            <p class="card-text"><%= event.category.sport %>  </p>
             <div>
               <% if event.user.avatar.attached? %>
                 <%= cl_image_tag event.user.avatar.key, width: 45, height: 45, crop: :fill  %>
