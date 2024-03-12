@@ -41,7 +41,7 @@ export default class extends Controller {
       div.dataset.bsToggle = "offcanvas";
       div.dataset.bsTarget = `#event-${marker.event_id}`;
 
-      console.log(div)
+      // console.log(div)
 
       new mapboxgl.Marker(div)
         .setLngLat([ marker.lng, marker.lat ])
