@@ -13,28 +13,32 @@
   font-size: 0.7rem;
   border-radius: 50rem;
   padding: 0.1rem 0.5rem;
-  background-color: #ECEAFF;
-  color: #7E73FF;
-  border: 1px solid #7E73FF;
+  background-color: #FFFADD;
+  color: #22668D;
+  border: 1px solid;
   margin-right: 0.6rem;
   margin-bottom: 0.4rem;
 }
 
 .tag-selector:checked + label {
-  background-color: #7E73FF;
-  color: white;
+  background-color: #8ECDDD;
+  color: #FFFADD;
 }
 
 button {
-  background-color: #E88873;
-  width: 100px;
+  background-color: #8ECDDD;
+  width: 90px;
   display: inline-block;
   padding: 0.7rem;
   border-radius: 30px;
   font-size: 1rem;
-  font-weight: 200;
+  font-weight: 300;
 }
 
 .offcanvas {
   height: 300px !important;
+}
+
+.form-switch .form-check-input:checked {
+  background: #8ECDDD;
 }
