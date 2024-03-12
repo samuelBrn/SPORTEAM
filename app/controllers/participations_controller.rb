@@ -13,12 +13,12 @@ class ParticipationsController < ApplicationController
     if @event.participations.count < @event.max_player
       @participation = Participation.new(event: @event, user: current_user)
       if @participation.save
-        redirect_to @event, notice: 'Participation confirmée.'
+        redirect_to dashboard_path, notice: 'Participation confirmée.'
       else
-        redirect_to @event, alert: 'Vous êtes déjà inscrit à cet évènement.'
+        redirect_to events_path, alert: 'Vous êtes déjà inscrit à cet évènement.'
       end
     else
-      redirect_to @event, alert: 'Cet événement a déjà atteint le nombre maximum de participants.'
+      redirect_to events_path, alert: 'Cet événement a déjà atteint le nombre maximum de participants.'
     end
   end
 
