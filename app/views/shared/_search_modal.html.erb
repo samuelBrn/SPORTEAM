@@ -1,0 +1,40 @@
+<div class="offcanvas offcanvas-bottom round-top" tabindex="-1" id="search-event" aria-labelledby="offcanvasBottomLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasBottomLabel">Search Event</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body small">
+        <div class="search-form">
+          <%= form_tag(search_events_path, method: :get, class: "search-form-inner") do %>
+            <div class="mb-3">
+              <%= label_tag :location, "Location:", class: "form-label" %>
+              <%= text_field_tag :location, nil, class: "form-control", placeholder: "Enter location..." %>
+            </div>
+            <div data-controller="myfavs">
+              <div data-myfavs-target="categories">
+                <% Category.all.each do |category| %>
+                  <div class="form-check form-switch">
+                    <%= check_box_tag "categories[]", category.id, params[:categories]&.map(&:to_i)&.include?(category.id), class: 'form-check-input', id: "category_#{category.id}", data: { action: "change->myfavs#filter" } %>
+                    <%= label_tag "category_#{category.id}", category.sport, class: 'form-check-label' %>
+                  </div>
+                <% end %>
+              </div>
+              <%= submit_tag 'Filter', class: 'btn btn-light d-none', data: { myfavs_target: "submit" } %>
+            </div>
+
+          <div class="tag-item">
+            <input class="tag-selector" id="filter_next_7_days" name="next_7_days" type="checkbox" data-controller="filter" data-action="change->filter.toggleFilter" data-target="filter.next7Days">
+            <label for="filter_next_7_days">7 jours</label>
+
+            <input class="tag-selector" id="filter_ce_weekend" name="ce_weekend" type="checkbox" data-controller="filter" data-action="change->filter.toggleFilter" data-target="filter.thisWeekend">
+            <label for="filter_ce_weekend">Ce week-end</label>
+
+            <input class="tag-selector" id="filter_demain" name="demain" type="checkbox" data-controller="filter" data-action="change->filter.toggleFilter" data-target="filter.tomorrow">
+            <label for="filter_demain">Demain</label>
+          </div>
+
+            <button data-action="click->filter.search">Search</button>
+          <% end %>
+        </div>
+    </div>
+  </div>

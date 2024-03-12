@@ -21,11 +21,11 @@
             <% end %>
           </li>
 
-          <li class="nav-item">
-            <%= link_to search_events_path, class: "nav-link search-toggle" do %>
-             <i class="fa-solid fa-magnifying-glass"></i>
-            <%= end %>
-          </li>
+    <li class="nav-item">
+      <%= link_to '#', class: "nav-link search-toggle", id: "searchToggleLink", data: { controller: "search-toggle", action: "click->search-toggle#toggleModal" } do %>
+        <i class="fa-solid fa-magnifying-glass"></i>
+      <% end %>
+    </li>
 
 
 

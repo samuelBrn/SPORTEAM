@@ -10,8 +10,8 @@
       <%= image_tag "dashboard.png", width: "12px", height: "12px" %>
     <% end %>
 
-    <%= link_to search_events_path, class: "nav-link search-toggle" do %>
-    <%= image_tag "search.png", width: "12px", height: "12px" %>
+    <%= link_to "#", class: "nav-link search-toggle", data: { bs_toggle: "offcanvas", bs_target: "#search-event" } do %>
+      <i class="fa-solid fa-magnifying-glass"></i>
     <% end %>
 
     <%= link_to new_event_path, class: "nav-link search-toggle" do %>
