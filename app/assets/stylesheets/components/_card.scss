@@ -14,7 +14,7 @@
 
 .card:hover {
   transform: scale(1.05);
-  border: 4px solid #D0FD6C; /* Effet de zoom au survol */
+  border: 4px solid 
 }
 
 .btn-container {
@@ -23,16 +23,12 @@
 
 .btn-primary {
   color: #2F2E41;
-  background: #D0FD6C;
-  border-color: #D0FD6C;
+  background: #FFFADD;
+  border-color: #FFFADD;
   border-radius: 25px;
   font-weight: bold;
 }
 
-.btn-primary:hover {
-  background-color: #bbe461;
-  border-color: #bbe461;
-}
 h5, .h5 {
   font-size: 1,5rem;
   font-weight: bolder;
