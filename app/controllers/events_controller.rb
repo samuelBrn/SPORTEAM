@@ -4,7 +4,7 @@ class EventsController < ApplicationController
     def index
       # Commencer par tous les événements si l'utilisateur n'est pas connecté
       @events = Event.all
-      
+
 
       # Si l'utilisateur est connecté, limiter d'abord les événements à ses catégories favorites
       @events = @events.where(category_id: current_user.categories.pluck(:id)) if user_signed_in?
