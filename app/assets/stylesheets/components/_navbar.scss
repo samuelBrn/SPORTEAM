@@ -1,19 +1,10 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: #D0FD6C;
+  background: #83C0C1;
 }
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
-}
-
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
-}
-
-.navbar-logo {
-  max-width: 100%;
-  height: auto;/* Maintain aspect ratio */
 }
 
 .navbar-nav .nav-item {
@@ -29,9 +20,6 @@
   padding: 0;
 }
 
-.add-btn:hover {
-  animation: shake 0.8s linear;
-}
 
 @keyframes shake {
   20% {

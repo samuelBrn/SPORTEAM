@@ -2,16 +2,20 @@
 
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-bottom">
   <div class="container-fluid">
-    <%= link_to events_path , class: "navbar-brand navbar-logo" do %>
-      <%= image_tag "logo.png" %>
+    <%= link_to events_path , class: "nav-link search-toggle" do %>
+      <%= image_tag "home.png", width: "12px", height: "12px"%>
     <% end %>
 
-    <%= link_to dashboard_path, class: "" do %>
-      <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar" %>
+    <%= link_to dashboard_path, class: "nav-link search-toggle" do %>
+      <%= image_tag "dashboard.png", width: "12px", height: "12px" %>
     <% end %>
 
-    <%= link_to new_event_path, class: "nav-link add-btn" do %>
-      <%= image_tag "add.png" %>
+    <%= link_to search_events_path, class: "nav-link search-toggle" do %>
+    <%= image_tag "search.png", width: "12px", height: "12px" %>
+    <% end %>
+
+    <%= link_to new_event_path, class: "nav-link search-toggle" do %>
+    <%= image_tag "plus.png", width: "12px", height: "12px" %>
     <% end %>
   </div>
 </div>

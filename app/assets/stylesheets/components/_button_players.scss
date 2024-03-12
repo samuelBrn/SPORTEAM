@@ -1,0 +1,15 @@
+.player-count {
+  display: inline-block;
+  width: 40px; /* Ajustez la largeur selon vos besoins */
+  text-align: center;
+}
+
+.custom-player-count {
+  align-items: center !important;
+}
+
+.input-group-prepend {
+  div {
+    margin-bottom: 0 !important;
+  }
+}

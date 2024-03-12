@@ -38,7 +38,7 @@ export default class extends Controller {
       div.style.backgroundPosition = 'center';
       div.style.backgroundSize = 'cover';
       div.style.backgroundImage = `url(${marker.image})`;
-      div.dataset.bsToggle = "modal";
+      div.dataset.bsToggle = "offcanvas";
       div.dataset.bsTarget = `#event-${marker.event_id}`;
 
       console.log(div)

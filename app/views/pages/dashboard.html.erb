@@ -1,5 +1,98 @@
+
+
+ <div class="welcome-container">
+  <h1>Hello, welcome back!</h1>
+  <p class="event-count">You went to <%= current_user.events_this_month.count %> events this month!</p>
+  <h2 class="upcoming-schedule">Your upcoming schedule:</h2>
+    <!-- Le reste du contenu ira ici -->
+
+  </div>
+
+
+<div class="container schedule-container">
+  <div class="row">
+    <!-- Prochain événement -->
+    <div class="col-6 card-container">
+     <div class="card">
+    <% if @next_event %>
+      <%= image_tag @next_event.category.image, alt: @next_event.category.sport, class: 'card-img-top' %>
+      <div class="card-body">
+        <p>You have <%= @next_event.category.sport %> on <%= @next_event.start_at.strftime("%A %B %e") %></p>
+      </div>
+    <% else %>
+      <p>No upcoming events</p>
+    <% end %>
+  </div>
+    </div>
+
+    <!-- Préférences -->
+    <div class="col-6 card-container">
+      <div class="card">
+        <div class="card-body">
+          <p>Your preferences</p>
+          <% current_user.favourite_categories.each do |category| %>
+            <span><%= category.sport %></span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <!-- Recherche -->
+    <div class="col-6 card-container">
+      <div class="card">
+        <div class="card-body">
+          <%= link_to "Search", events_path, class: "search-link" %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Case vide pour le moment -->
+    <div class="col-6 card-container">
+      <div class="card">
+        <div class="card-body">
+          <!-- Contenu à définir plus tard -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="container">
-  <h2>Hello <%= current_user.first_name %></h2>
   <h3>Your created events💪</h3>
   <div class="row">
     <% @events.each do |event| %>
@@ -14,7 +107,8 @@
               <p class="card-text"><strong>Participants:</strong> <%= event.current_participants_count %> / <%= event.max_player %></p>
               <div class='btn-container'>
                 <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#edit-event-<%= event.id %>">Update</button>
-                <%= link_to "Delete Event", participation_path(current_user.find_participation_for(event)), data: { bs_toggle: "modal", bs_target: "#destroy-event-#{event.id}", turbo_method: :delete, confirm: 'Are you sure?' }, class: "btn btn-light" %>
+                <% participation = Participation.find_by(user: current_user, event: event) %>
+                <%= link_to "Delete Event", participation_path(participation), data: { bs_toggle: "modal", bs_target: "#destroy-participation-#{event.id}", turbo_method: :delete, confirm: 'Are you sure?' }, class: "btn btn-light" %>
               </div>
             </div>
           </div>
@@ -36,7 +130,8 @@
               <p class="card-text"><strong>Starts at:</strong> <%= event.start_at %></p>
               <p class="card-text"><strong>Participants:</strong> <%= event.current_participants_count %> / <%= event.max_player %></p>
               <div class='btn-container'>
-                <%= link_to "Cancel Event", participation_path(current_user.find_participation_for(event)), data: { bs_toggle: "modal", bs_target: "#destroy-event-#{event.id}", turbo_method: :delete, confirm: 'Are you sure?' }, class: "btn btn-light" %>
+              <% participation = Participation.find_by(user: current_user, event: event) %>
+                <%= link_to "Cancel coucou", participation_path(participation), data: { bs_toggle: "modal", bs_target: "#destroy-participation-#{event.id}", turbo_method: :delete, confirm: 'Are you sure?' }, class: "btn btn-light" %>
               </div>
             </div>
           </div>
@@ -91,4 +186,5 @@
 <% @events.each do |event| %>
   <%= render "events/edit_modal", event: event %>
   <%= render 'events/destroy_modal', event: event %>
+  <%= render 'events/destroy_participation', event: event %>
 <% end %>

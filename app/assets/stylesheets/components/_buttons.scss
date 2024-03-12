@@ -28,7 +28,7 @@ $btn-colors: (
 h1 {
 	line-height: 1;
 	padding: 25px 0;
-  
+
 	font-size: 25px;
 	color: $color-one;
 	text-align: center;
@@ -68,7 +68,7 @@ section {
 	font-size: 15px;
 	position: relative;
 	opacity: .999;
-	border-radius: 3px;
+	border-radius: 10px;
 	@extend .animate;
 }
 

@@ -12,10 +12,12 @@ class PagesController < ApplicationController
   end
 
   def dashboard
+    @user = current_user
     @events = current_user.events
     @user_favourites = current_user.favourites
     @user_categories = current_user.categories
     @other_categories = Category.where.not(id: current_user.categories.pluck(:id))
+    @next_event = @user.next_event
   end
 
   def update_profile

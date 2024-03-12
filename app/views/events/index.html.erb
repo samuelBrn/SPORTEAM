@@ -1,30 +1,6 @@
-<div data-controller="myfavs">
-  <%= form_tag(events_path, method: :get) do %>
-    <div data-myfavs-target="categories">
-      <% Category.all.each do |category| %>
-        <div class="form-check form-switch" data>
-          <%= check_box_tag "categories[]", category.id, params[:categories]&.map(&:to_i)&.include?(category.id), class: 'form-check-input', id: "category_#{category.id}", data: { action: "change->myfavs#filter" } %>
-          <%= label_tag "category_#{category.id}", category.sport, class: 'form-check-label' %>
-        </div>
-      <% end %>
-    </div>
-    <%= submit_tag 'Filter', class: 'btn btn-light d-none', data: { myfavs_target: "submit" } %>
-  <% end %>
-</div>
 
-<div data-controller="switch">
-  <div class="container mt-3 text-center">
-    <div class="btn-group" role="group" aria-label="List map toggle">
-      <button data-action="click->switch#handleClick" data-switch-toggableTarget-param="cards" class="btn btn-toggle active">
-        MAP 📋
-      </button>
-      <button data-action="click->switch#handleClick" data-switch-toggableTarget-param="map" class="btn btn-toggle">
-        LIST 🌍
-      </button>
-    </div>
-  </div>
 
-<div style="width: 100%; height: 600px;"
+<div style="width: 100%; height: 900px;"
     data-controller="map"
     data-map-markers-value="<%= @markers.to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
@@ -39,12 +15,12 @@
         <div class="card-body">
           <h5 class="card-title"><%= event.name %></h5>
           <div class="d-flex justify-content-between align-items-center">
-            <p class="card-text"><%= event.category.sport %></p>
+            <p class="card-text"><%= event.category.sport %>  </p>
             <div>
               <% if event.user.avatar.attached? %>
                 <%= cl_image_tag event.user.avatar.key, width: 45, height: 45, crop: :fill  %>
               <% else %>
-                <%= image_tag 'avatar.png', width: 45, height: 45 %>
+                <%= image_path 'avatar', width: 45, height: 45 %>
               <% end %>
             </div>
           </div>

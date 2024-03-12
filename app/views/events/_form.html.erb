@@ -6,15 +6,41 @@
         <%= f.input :adress %>
         <%= f.input :description %>
         <%= f.association :category %>
-        <%= f.input :start_at %>
-        <%= f.input :end_at %>
-        <%= f.input :max_player %>
-        <%= f.input :min_player %>
+        <%= f.input :start_at,
+            as: :string,
+            input_html: { data: { controller: "flatpickr" } } %>
+        <%= f.input :end_at,
+            as: :string,
+            input_html: { data: { controller: "flatpickr" } } %>
+
+    <div class="player-input" data-controller="player">
+      <div class="input-group custom-player-count">
+        <p>Min player</p>
+        <%= f.input :min_player, label: false, input_html: { class: "d-none", data: { player_target: "input" } } %>
+        <div class="input-group-prepend">
+          <button class="btn btn-outline-secondary player-btn-minus" type="button" data-action="click->player#decrement">-</button>
+        </div>
+        <span class="player-count minus" data-player-target="count">0</span>
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary player-btn-plus" type="button" data-action="click->player#increment">+</button>
+        </div>
+      </div>
+      <div class="input-group custom-player-count">
+        <p>Max Player</p>
+        <%= f.input :max_player, label: false, input_html: { class: "d-none", data: { player_target: "input" } } %>
+        <div class="input-group-prepend">
+          <button class="btn btn-outline-secondary player-btn-minus" type="button" data-action="click->player#decrement">-</button>
+        </div>
+        <span class="player-count plus" data-player-target="count">0</span>
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary player-btn-minus" type="button" data-action="click->player#increment">+</button>
+        </div>
+      </div>
+    </div>
 
         <div style="text-align: center;">
         <%= f.submit 'Save', class: "btn custom-button px-5 py-2"  %>
         </div>
       <% end %>
     </div>
-
 </div>
