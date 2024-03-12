@@ -1,1 +1,30 @@
 // Specific CSS for your home-page
+.pages-home {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  #home-logo {
+    width: 280px;
+    margin: 0 auto;
+  }
+}
+
+
+.main-pitch {
+  font-size: 2.1em;
+  font-weight: 500;
+  max-width: 280px;
+  margin: 2em auto;
+}
+
+.home-button {
+  background-color: $sport-secondary;
+  width: 200px;
+  display: inline-block;
+  padding: 0.7rem;
+  border-radius: 30px;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
