@@ -2,7 +2,7 @@
   <div class="offcanvas-body small">
     <div class="event-show-card">
       <div style="background-image: url(<%= cl_image_path( event.image.attached? ? event.image.key : "") %>)" class="event-show-card-main-picture"></div>
-      <div class="mx-5">
+      <div class="mx-3 my-3">
       <div class="d-flex justify-content-between align-items-center">
         <h5 class="card-title bold"><%= event.name %></h5>
         <%= image_tag "#{event.category.sport.downcase}.png", class: , width: "47px", height: "47px" %>
