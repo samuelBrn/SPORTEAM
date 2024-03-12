@@ -1,15 +1,7 @@
-<h1 class="main-title">
-  Sporteam
-</h1>
+<div class="container">
+  <%= image_tag "home.svg", id: "home-logo" %>
 
-<%= image_tag "main_front_image.svg" %>
+  <h2 class="main-pitch">Meet new people to move your body</h2>
 
-<h2 class="main-pitch">
-Meet new people to move your body 💪🏻🏆
-</h2>
-
-<div class="main_button_container">
-<%= link_to "GO", events_path, class: "main-button" %>
-
+  <%= link_to "GO", events_path, class: "home-button" %>
 </div>
-

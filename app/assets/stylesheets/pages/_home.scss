@@ -1,52 +1,30 @@
 // Specific CSS for your home-page
-.banner {
-  background-size: cover;
-  background-position: center;
-  padding: 150px 0;
-}
-
-.banner h1 {
-  margin: 0;
-  color: white;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 32px;
-  font-weight: bold;
-}
-
-.banner p {
-  font-size: 20px;
-  color: white;
-  opacity: .7;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-}
-
-.main-title {
-
+.pages-home {
   text-align: center;
-  margin-top: 1em;
-  margin-bottom: 1em;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  #home-logo {
+    width: 280px;
+    margin: 0 auto;
+  }
 }
+
 
 .main-pitch {
-
-  margin-top: 1em;
-  font-size: 3.5em;
-  background-color: #ffffff4d;
+  font-size: 2.1em;
+  font-weight: 500;
+  max-width: 280px;
+  margin: 2em auto;
 }
 
-.main-button {
-
-  background-color: #D0FD6C;
-  color: black;
-  text-decoration: none;
-  font-size: 3em;
-  border-radius: 50px;
-}
-
-.main_button_container {
-
-  display: flex;
-  justify-content: flex-end;
-
+.home-button {
+  background-color: $sport-secondary;
+  width: 200px;
+  display: inline-block;
+  padding: 0.7rem;
+  border-radius: 30px;
+  font-size: 1.5rem;
+  font-weight: 500;
 }
