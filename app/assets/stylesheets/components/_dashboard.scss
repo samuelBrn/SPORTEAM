@@ -44,3 +44,20 @@
   align-items: center; /* Centre le contenu horizontalement */
   text-align: center; /* Centre le texte à l'intérieur du corps de la carte */
 }
+.sport-logos-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.small-logo {
+  width: 30px; /* Définissez la taille souhaitée */
+  height: auto; /* Pour maintenir les proportions de l'image */
+  margin-right: 10px; /* Espacement entre les logos */
+  margin-bottom: 10px; /* Espacement sous les logos */
+}
+
+.small-button {
+  font-size: 10px; /* Définissez la taille de la police */
+  padding: 0.25rem 0.5rem; /* Définissez les rembourrages du bouton */
+  line-height: 1; /* Ajustez la hauteur de ligne */
+}
