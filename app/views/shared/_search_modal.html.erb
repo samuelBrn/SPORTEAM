@@ -5,12 +5,12 @@
   </div>
   <div class="offcanvas-body small">
         <div class="search-form">
-          <%= form_tag(search_events_path, method: :get, class: "search-form-inner") do %>
+          <%= form_tag(events_path, method: :get, class: "search-form-inner") do %>
             <div class="mb-3">
               <%= label_tag :location, "Location:", class: "form-label" %>
               <%= text_field_tag :location, nil, class: "form-control", placeholder: "Enter location..." %>
             </div>
-            <div data-controller="myfavs">
+            <div data-controller="">
               <div data-myfavs-target="categories">
                 <% Category.all.each do |category| %>
                   <div class="form-check form-switch">

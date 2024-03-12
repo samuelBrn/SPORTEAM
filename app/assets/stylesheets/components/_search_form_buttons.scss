@@ -26,8 +26,15 @@
 }
 
 button {
-  color: #2F2E41;
-  background: #D0FD6C;
-  border-color: #D0FD6C;
-  border-radius: 25px;
+  background-color: #E88873;
+  width: 100px;
+  display: inline-block;
+  padding: 0.7rem;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 200;
+}
+
+.offcanvas {
+  height: 300px !important;
 }
