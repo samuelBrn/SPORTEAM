@@ -30,8 +30,8 @@ yoga_cat = Category.create(sport: 'Yoga')
 basket_cat = Category.create(sport: 'Basketball')
 
 # # Création de quelques utilisateurs
-10.times do
-  user = User.create!(
+10.times do |index|
+  user = User.create(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     email: Faker::Internet.email,
@@ -40,18 +40,23 @@ basket_cat = Category.create(sport: 'Basketball')
     age: rand(25..40)
   )
 
-  avatar_url = Faker::Avatar.image(slug: "my-own-slug", size: "50x50", format: "png")
-  file = URI.open(avatar_url)
-  user.avatar.attach(io: file, filename: "avatar.png", content_type: "image/png")
+  # puts asset_path('user_1.png')
+  image_path = Rails.root.join("app", "assets", "images", "user_#{index + 1 }.png")
+  user.avatar.attach(io: File.open(image_path), filename: "user_#{index + 1}.png", content_type: "image/png")
 end
+
+
 current_user = User.create!(
   first_name: "dad",
   last_name: "toc",
   email: "test@test.com",
   password: 'password', # Assurez-vous que votre modèle User utilise has_secure_password ou Devise
   phone_number: Faker::PhoneNumber.phone_number,
-  age: rand(25..40)
+  age: rand(25..40),
 )
+image_path = Rails.root.join("app", "assets", "images", "user_1.png")
+current_user.avatar.attach(io: File.open(image_path), filename: "user_1.png", content_type: "image/png")
+
 puts " Création d'event basketball..."
 
 adresses_paris_basketball = [
@@ -80,6 +85,7 @@ adresses_paris_basketball.each_with_index do |adresse, index|
       min_player: rand(2..5),
       description: Faker::Lorem.sentence(word_count: 10)
     )
+
   image_path = Rails.root.join("app", "assets", "images", "event_#{index + 1}.png")
   event_basketball.image.attach(io: File.open(image_path), filename: "event_#{index + 1}.png", content_type: "image/png")
 
@@ -115,7 +121,7 @@ adresses_paris_football.each_with_index do |adresse, index|
       description: Faker::Lorem.sentence(word_count: 10)
     )
   image_path = Rails.root.join("app", "assets", "images", "event_foot_#{index + 1}.png")
-  event_football.image.attach(io: File.open(image_path), filename: "event_#{index + 1}.png", content_type: "image/png")
+  event_football.image.attach(io: File.open(image_path), filename: "event_foot_#{index + 1}.png", content_type: "image/png")
 
 end
 
@@ -148,7 +154,7 @@ adresses_paris_yoga.each_with_index do |adresse, index|
       description: Faker::Lorem.sentence(word_count: 10)
     )
   image_path = Rails.root.join("app", "assets", "images", "event_yoga_#{index + 1}.png")
-  event_yoga.image.attach(io: File.open(image_path), filename: "event_#{index + 1}.png", content_type: "image/png")
+  event_yoga.image.attach(io: File.open(image_path), filename: "event_yoga_#{index + 1}.png", content_type: "image/png")
 
 end
 
