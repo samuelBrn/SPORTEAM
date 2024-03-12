@@ -1,0 +1,19 @@
+.offcanvas.event-show-offcanvas {
+  background-color: white;
+  overflow: hidden;
+  height: 50vh;
+  .offcanvas-body {
+    padding: 0;
+  }
+}
+
+.event-show-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .event-show-card-main-picture {
+    height: 230px;
+    background-size: cover;
+    background-position: center;
+  }
+}
