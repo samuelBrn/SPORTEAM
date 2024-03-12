@@ -3,7 +3,12 @@
 <div class="offcanvas offcanvas-bottom round-top modal-fullscreen" id="event-<%= event.id %>">
     <%# <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button> %>
   <div>
+    <% if event.image.attached? %>
     <%= cl_image_tag event.image.key, class: "background-div round-top"%>
+
+          <% else %>
+            <div class="card-img-top placeholder-image">No image</div>
+          <% end %>
   </div>
   <div class="offcanvas-body small">
       <div>
