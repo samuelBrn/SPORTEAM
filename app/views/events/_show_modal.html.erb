@@ -1,30 +1,47 @@
 <%# <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Toggle bottom offcanvas</button> %>
 
-<div class="offcanvas offcanvas-bottom round-top" tabindex="-1" id="event-<%= event.id %>" aria-labelledby="offcanvasBottomLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasBottomLabel"><%= event.name %></h5>
-    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+<div class="offcanvas offcanvas-bottom round-top modal-fullscreen" id="event-<%= event.id %>">
+    <%# <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button> %>
+  <div>
+    <% if event.image.attached? %>
+    <%= cl_image_tag event.image.key, class: "background-div round-top"%>
+
+          <% else %>
+            <div class="card-img-top placeholder-image">No image</div>
+          <% end %>
   </div>
   <div class="offcanvas-body small">
-      <h5 class="card-title"></h5>
-          <div class="d-flex justify-content-between align-items-center">
-            <div>
+      <div>
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h5 class="card-title bold"><%= event.name %> </h5>
+          </div>
+          <div>
+            <%= image_tag "#{event.category.sport.downcase}.png", class: , width: "47px", height: "47px" %>
+          </div>
+        </div>
+      <div>
 
-            </div>
-            <%= cl_image_tag event.image.key, height: 150, width: 170, crop: :fill, radius: 10 %>
+      <p class="card-text"><%= event.start_at %></p>
 
-            <div>
-            <h5 class="card-text"><%= event.category.sport %></h5>
-          <p class="card-text"><%= event.start_at %></p>
-          <p class="card-text"><strong>Participants:</strong> <%= event.current_participants_count %> / <%= event.max_player %></p>
+      <p class="card-text"><strong>Participants:</strong>
 
+      <%= event.current_participants_count %>/ <%= event.max_player %></p>
+        <div>
           <% if event.participations.count < event.max_player %>
-          <%= button_to 'Join 😎', participate_event_path(event), method: :post, class: 'align-items-center btn btn-primary' %>
         <% else %>
           <p>Cet événement a déjà atteint le nombre maximum de participants.</p>
         <% end %>
-            </div>
-          </div>
+        </div>
+<div class="d-flex align-items-center">
+      <% event.users.each do |user| %>
+        <% if user.avatar.attached? %>
+          <%= cl_image_tag user.avatar.key, width: 45, height: 45, style: "border-radius : 50%"  %>
+        <% end %>
+      <% end %>
+</div>
+      </div>
   </div>
 </div>
+  <%= button_to 'Join', participate_event_path(event), method: :post, class: 'bigger align-items-center btn btn-primary btn-lg' %>
 </div>

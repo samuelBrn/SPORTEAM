@@ -1,4 +1,27 @@
+
 .round-top {
   border-top-left-radius: 30px; /* adjust the value as needed */
-  border-top-right-radius: 30px; /* adjust the value as needed */
+  border-top-right-radius: 30px;
+
+}
+.background-div {
+background-size: cover;
+background-position: center;
+width: 430px; /* Make sure the div spans the entire width of its parent */
+height: 220px; /* Make sure the div spans the entire height of the viewport */
+} /* adjust the value as needed */
+
+.offcanvas.offcanvas-bottom {
+  height: 50vh;
+}
+
+.right-div {
+  float: right;
+}
+.bigger {
+  padding: 12px 24px;
+  text-align: center;
+  width: 415px;
+  height: 77px;// Adjust padding to increase button size
+  font-size: 20px;
 }
