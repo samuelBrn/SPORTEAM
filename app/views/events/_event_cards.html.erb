@@ -1,0 +1,15 @@
+<% events.each do |event| %>
+  <div class="card-event">
+    <div class="card-event-img" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(<%= cl_image_path event.image.attached? ? event.image.key : "" %>) ">
+      <%= image_tag "#{event.category.sport.downcase}.png" %>
+      <div class="participants">
+        <p><strong><%= event.participations.count %></strong> <small>/<%= event.max_player %> part.</small></p>
+      </div>
+    </div>
+    <div class="card-event-content">
+      <i class="fa-regular fa-calendar"></i><p><%= event.start_at.strftime("%A %B %e") %></p>
+      <i class="fa-regular fa-clock"></i><p><%= event.duration %></p>
+      <i class="fa-solid fa-location-dot"></i><p><%= event.name %> — <span><%= event.adress.split(",").last.strip %></span></p>
+    </div>
+  </div>
+<% end %>

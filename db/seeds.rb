@@ -59,6 +59,13 @@ current_user.avatar.attach(io: File.open(image_path), filename: "user_1.png", co
 
 puts " Création d'event basketball..."
 
+description_basketball = [
+  "For fun, everyone's welcome to join in the game!",
+  "Get ready to hit the pavement and show off your skills in our streetball tournamenty.",
+  "Score some hoops and sizzle some burgers at our basketball BBQ bashm ",
+  "JOIN US FOR GOOD TIME 😀"
+]
+
 adresses_paris_basketball = [
   "22 Rue Duperré, 75009 Paris",
   "10 Rue Pierre Nicole, 75005 Paris",
@@ -71,22 +78,22 @@ terrain_name_basketball = [
   "Terrain Léo Lagrange",
   "Terrain de sport des jardins Saint-Paul",
 ]
-start_date_range = DateTime.new(2024, 3, 20)..DateTime.new(2024, 4, 10)
-end_date_range = DateTime.new(2024, 3, 20, 8, 0, 0)..DateTime.new(2024, 4, 10, 20, 0, 0)
+start_date_range = DateTime.new(2024, 2, 20)..DateTime.new(2024, 4, 10)
 
 
 adresses_paris_basketball.each_with_index do |adresse, index|
+  random_start_at = Faker::Time.between(from: start_date_range.begin, to: start_date_range.end, format: :default)
   event_basketball = Event.create!(
       user: User.all.sample,
       category_id: basket_cat.id,
       name: terrain_name_basketball[index],
       adress: adresse,
-      start_at: Faker::Time.between(from: start_date_range.begin, to: start_date_range.end, format: :default),
-      end_at: Faker::Time.between(from: end_date_range.begin, to: end_date_range.end, format: :default),
+      start_at: random_start_at,
+      end_at: DateTime.parse(random_start_at) + 2.hours,
       status: ["planned", "ongoing", "completed"].sample,
       max_player: rand(5..20),
       min_player: rand(2..5),
-      description: Faker::Lorem.sentence(word_count: 10)
+      description: description_basketball[index]
     )
 
   image_path = Rails.root.join("app", "assets", "images", "event_#{index + 1}.png")
@@ -96,6 +103,12 @@ end
 
 puts " Création d'event football..."
 
+description_football = [
+  "Calling all football fanatics! Lace up your cleats and join us for some pigskin action on the field.",
+  "all levels welcome, let's have fun",
+  "Tis event is all about friendly competition, good vibes, and delicious treats on the sidelines.",
+  "LET'S PLAY FOOTBALL COMPETITION 100% !"
+]
 
 adresses_paris_football = [
   "68 Bd Poniatowski, 75012 Paris",
@@ -111,17 +124,19 @@ terrain_name_football = [
 ]
 
 adresses_paris_football.each_with_index do |adresse, index|
+  random_start_at = Faker::Time.between(from: start_date_range.begin, to: start_date_range.end, format: :default)
   event_football = Event.create!(
       user: User.all.sample,
       category_id: football_cat.id,
       name: terrain_name_football[index],
       adress: adresse,
-      start_at: Faker::Time.between(from: start_date_range.begin, to: start_date_range.end, format: :default),
-      end_at: Faker::Time.between(from: end_date_range.begin, to: end_date_range.end, format: :default),
+      start_at: random_start_at,
+      end_at: DateTime.parse(random_start_at) + 2.hours,
       status: ["planned", "ongoing", "completed"].sample,
       max_player: rand(5..20),
       min_player: rand(2..5),
-      description: Faker::Lorem.sentence(word_count: 10)
+      description: description_football[index]
+
     )
   image_path = Rails.root.join("app", "assets", "images", "event_foot_#{index + 1}.png")
   event_football.image.attach(io: File.open(image_path), filename: "event_foot_#{index + 1}.png", content_type: "image/png")
@@ -129,6 +144,14 @@ adresses_paris_football.each_with_index do |adresse, index|
 end
 
 puts " Création d'event yoga..."
+
+description_yoga = [
+  "Hey yogis! Let's stretch, laugh, and relax together in the park.",
+  "No experience necessary, just bring your mat and good vibes!",
+  "start your day with a little zen and a lot of fun come",
+  "morning yoga,  laughter and relaxation. No judgment, good vibes and positive energy!"
+
+]
 
 adresses_paris_yoga = [
   "68 Rue Jean-Jacques Rousseau, 75001 Paris",
@@ -144,17 +167,18 @@ terrain_name_yoga = [
 ]
 
 adresses_paris_yoga.each_with_index do |adresse, index|
+  random_start_at = Faker::Time.between(from: start_date_range.begin, to: start_date_range.end, format: :default)
   event_yoga = Event.create!(
       user: User.all.sample,
       category_id: yoga_cat.id,
       name: terrain_name_yoga[index],
       adress: adresse,
-      start_at: Faker::Time.between(from: start_date_range.begin, to: start_date_range.end, format: :default),
-      end_at: Faker::Time.between(from: end_date_range.begin, to: end_date_range.end, format: :default),
+      start_at: random_start_at,
+      end_at: DateTime.parse(random_start_at) + 1.hours + 30.minutes,
       status: ["planned", "ongoing", "completed"].sample,
       max_player: rand(5..20),
       min_player: rand(2..5),
-      description: Faker::Lorem.sentence(word_count: 10)
+      description: description_yoga[index],
     )
   image_path = Rails.root.join("app", "assets", "images", "event_yoga_#{index + 1}.png")
   event_yoga.image.attach(io: File.open(image_path), filename: "event_yoga_#{index + 1}.png", content_type: "image/png")
