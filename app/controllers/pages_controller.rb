@@ -14,6 +14,12 @@ class PagesController < ApplicationController
   def dashboard
     @user = current_user
     @events = current_user.events
+    if params[:categories].present?
+      current_user.favourites.destroy_all
+      params[:categories].each do |category|
+        current_user.favourites.create(category_id: category.to_i)
+      end
+    end
     @user_favourites = current_user.favourites
     @user_categories = current_user.categories
     @other_categories = Category.where.not(id: current_user.categories.pluck(:id))

@@ -1,47 +1,27 @@
-<%# <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Toggle bottom offcanvas</button> %>
-
-<div class="offcanvas offcanvas-bottom round-top modal-fullscreen" id="event-<%= event.id %>">
-    <%# <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button> %>
-  <div>
-    <% if event.image.attached? %>
-    <%= cl_image_tag event.image.key, class: "background-div round-top"%>
-
-          <% else %>
-            <div class="card-img-top placeholder-image">No image</div>
-          <% end %>
-  </div>
+<div class="offcanvas offcanvas-bottom round-top modal-fullscreen event-show-offcanvas" id="event-<%= event.id %>">
   <div class="offcanvas-body small">
-      <div>
-        <div class="d-flex justify-content-between align-items-center">
-          <div>
-            <h5 class="card-title bold"><%= event.name %> </h5>
-          </div>
-          <div>
-            <%= image_tag "#{event.category.sport.downcase}.png", class: , width: "47px", height: "47px" %>
-          </div>
-        </div>
-      <div>
+    <div class="event-show-card">
+      <div style="background-image: url(<%= cl_image_path( event.image.attached? ? event.image.key : "") %>)" class="event-show-card-main-picture"></div>
+      <div class="mx-3 my-3">
+      <div class="d-flex justify-content-between align-items-center">
+        <h5 class="card-title bold"><%= event.name %></h5>
+        <%= image_tag "#{event.category.sport.downcase}.png", class: , width: "47px", height: "47px" %>
+      </div>
 
       <p class="card-text"><%= event.start_at %></p>
-
-      <p class="card-text"><strong>Participants:</strong>
-
-      <%= event.current_participants_count %>/ <%= event.max_player %></p>
-        <div>
-          <% if event.participations.count < event.max_player %>
-        <% else %>
-          <p>Cet événement a déjà atteint le nombre maximum de participants.</p>
-        <% end %>
-        </div>
-<div class="d-flex align-items-center">
-      <% event.users.each do |user| %>
-        <% if user.avatar.attached? %>
-          <%= cl_image_tag user.avatar.key, width: 45, height: 45, style: "border-radius : 50%"  %>
-        <% end %>
+      <p class="card-text"><strong>Participants:</strong> <%= event.current_participants_count %>/ <%= event.max_player %></p>
+      <% unless event.participations.count < event.max_player %>
+        <p>Cet événement a déjà atteint le nombre maximum de participants.</p>
       <% end %>
-</div>
+      <div class="d-flex align-items-center">
+        <% event.users.each do |user| %>
+          <% if user.avatar.attached? %>
+            <%= cl_image_tag user.avatar.key, width: 45, height: 45, style: "border-radius : 50%"  %>
+          <% end %>
+        <% end %>
       </div>
+      </div>
+      <%= button_to 'Join', participate_event_path(event), method: :post, class: 'join-cta flex-grow' %>
+    </div>
   </div>
-</div>
-  <%= button_to 'Join', participate_event_path(event), method: :post, class: 'bigger align-items-center btn btn-primary btn-lg' %>
 </div>
