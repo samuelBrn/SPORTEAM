@@ -24,6 +24,14 @@ class User < ApplicationRecord
     events.where('start_at > ?', Time.current).order(start_at: :asc).first
   end
 
+  def next_events
+    events.where('start_at > ?', Time.current).order(start_at: :asc)
+  end
+
+  def past_events
+    events.where('start_at <= ?', Time.current).order(start_at: :desc)
+  end
+
   private
 
   # Premier jour du mois en cours
