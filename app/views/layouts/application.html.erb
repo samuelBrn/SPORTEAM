@@ -19,7 +19,6 @@
 
   <body class="<%= controller_name %>-<%= action_name %>">
     <%= render "shared/flashes" %>
-
     <%= yield %>
     <%= render "shared/mobile_navbar" unless action_name == "home" %>
     <%= render "shared/search_modal" %>

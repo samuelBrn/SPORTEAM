@@ -16,5 +16,11 @@ class Event < ApplicationRecord
     @participation_first.user_id == user.id
   end
 
-  
+  def duration
+    dif_time = end_at - start_at
+    hour = dif_time / 3600
+    min = (dif_time % 3600) / 60
+    min < 10 ? "#{hour.to_i}h0#{min.to_i}" : "#{hour.to_i}h#{min.to_i}"
+  end
+
 end

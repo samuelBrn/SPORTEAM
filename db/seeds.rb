@@ -71,18 +71,18 @@ terrain_name_basketball = [
   "Terrain Léo Lagrange",
   "Terrain de sport des jardins Saint-Paul",
 ]
-start_date_range = DateTime.new(2024, 3, 20)..DateTime.new(2024, 4, 10)
-end_date_range = DateTime.new(2024, 3, 20, 8, 0, 0)..DateTime.new(2024, 4, 10, 20, 0, 0)
+start_date_range = DateTime.new(2024, 2, 20)..DateTime.new(2024, 4, 10)
 
 
 adresses_paris_basketball.each_with_index do |adresse, index|
+  random_start_at = Faker::Time.between(from: start_date_range.begin, to: start_date_range.end, format: :default)
   event_basketball = Event.create!(
       user: User.all.sample,
       category_id: basket_cat.id,
       name: terrain_name_basketball[index],
       adress: adresse,
-      start_at: Faker::Time.between(from: start_date_range.begin, to: start_date_range.end, format: :default),
-      end_at: Faker::Time.between(from: end_date_range.begin, to: end_date_range.end, format: :default),
+      start_at: random_start_at,
+      end_at: DateTime.parse(random_start_at) + 2.hours,
       status: ["planned", "ongoing", "completed"].sample,
       max_player: rand(5..20),
       min_player: rand(2..5),
@@ -111,13 +111,14 @@ terrain_name_football = [
 ]
 
 adresses_paris_football.each_with_index do |adresse, index|
+  random_start_at = Faker::Time.between(from: start_date_range.begin, to: start_date_range.end, format: :default)
   event_football = Event.create!(
       user: User.all.sample,
       category_id: football_cat.id,
       name: terrain_name_football[index],
       adress: adresse,
-      start_at: Faker::Time.between(from: start_date_range.begin, to: start_date_range.end, format: :default),
-      end_at: Faker::Time.between(from: end_date_range.begin, to: end_date_range.end, format: :default),
+      start_at: random_start_at,
+      end_at: DateTime.parse(random_start_at) + 2.hours,
       status: ["planned", "ongoing", "completed"].sample,
       max_player: rand(5..20),
       min_player: rand(2..5),
@@ -144,13 +145,14 @@ terrain_name_yoga = [
 ]
 
 adresses_paris_yoga.each_with_index do |adresse, index|
+  random_start_at = Faker::Time.between(from: start_date_range.begin, to: start_date_range.end, format: :default)
   event_yoga = Event.create!(
       user: User.all.sample,
       category_id: yoga_cat.id,
       name: terrain_name_yoga[index],
       adress: adresse,
-      start_at: Faker::Time.between(from: start_date_range.begin, to: start_date_range.end, format: :default),
-      end_at: Faker::Time.between(from: end_date_range.begin, to: end_date_range.end, format: :default),
+      start_at: random_start_at,
+      end_at: DateTime.parse(random_start_at) + 1.hours + 30.minutes,
       status: ["planned", "ongoing", "completed"].sample,
       max_player: rand(5..20),
       min_player: rand(2..5),
