@@ -1,14 +1,18 @@
 <div class="offcanvas offcanvas-bottom round-top modal-fullscreen event-show-offcanvas" id="event-<%= event.id %>">
   <div class="offcanvas-body small">
     <div class="event-show-card">
-      <div style="background-image: url(<%= cl_image_path( event.image.attached? ? event.image.key : "") %>)" class="event-show-card-main-picture"></div>
+      <div style="background-image: url(<%= cl_image_path( event.image.attached? ? event.image.key : "") %>)" class="event-show-card-main-picture">
+        <div class="glass-div">
+          <div class="round centered"><%= event.start_at.strftime( "%a, %e %b %Y") %> <p> </p> <%= event.start_at.strftime( "%I:%M %p") %></div>
+        </div>
+      </div>
       <div class="mx-3 my-3">
       <div class="d-flex justify-content-between align-items-center">
         <h5 class="card-title bold"><%= event.name %></h5>
         <%= image_tag "#{event.category.sport.downcase}.png", class: , width: "47px", height: "47px" %>
       </div>
 
-      <p class="card-text"><%= event.start_at %></p>
+      <p class="card-text"><%= event.description %></p>
       <p class="card-text"><strong>Participants:</strong> <%= event.current_participants_count %>/ <%= event.max_player %></p>
       <% unless event.participations.count < event.max_player %>
         <p>Cet événement a déjà atteint le nombre maximum de participants.</p>
