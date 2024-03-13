@@ -1,0 +1,47 @@
+.custom-button {
+    background-color: #8ECDDD;
+    color: #FFFADD;
+    display: inline-block;
+    padding: 0.7rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    height: 50px;
+    width: 200px !important;
+    margin: 1rem 0 2rem;
+}
+
+.btn {
+    background-color: #FFFADD;
+    color: #22668D;
+    width: 100px;
+    display: inline-block;
+    padding: 0.7rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+
+.button-player-minus, .button-player-plus {
+  background-color:#FFFADD;
+  border-color:#22668D;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  box-shadow: 0px 4px 16px rgba(0,0,0,0.2);
+}
+
+.increment-inputs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+p {
+  font-weight: bold;
+}

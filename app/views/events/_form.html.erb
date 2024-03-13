@@ -1,5 +1,5 @@
 <div class="banner">
-  <div class="container-form px-5 py-5 ">
+  <div class="container-form px-5 pb-5 ">
 
       <%= simple_form_for event do |f| %>
         <%= f.input :name %>
@@ -15,32 +15,36 @@
         <%= f.input :image, as: :file %>
 
     <div class="player-input" data-controller="player">
-      <div class="input-group custom-player-count">
+      <div class="mb-3 increment-input-group">
         <p>Min player</p>
-        <%= f.input :min_player, label: false, input_html: { class: "d-none", data: { player_target: "input" } } %>
-        <div class="input-group-prepend">
-          <button class="btn btn-outline-secondary player-btn-minus" type="button" data-action="click->player#decrement">-</button>
-        </div>
-        <span class="player-count minus" data-player-target="count">0</span>
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary player-btn-plus" type="button" data-action="click->player#increment">+</button>
+        <div class="increment-inputs">
+          <%= f.input :min_player, as: :integer, label: false, input_html: { value: event.min_player || "1", class: "d-none", data: { player_target: "input" }} %>
+          <div class="input-group-prepend">
+            <span class="button-player-minus" type="button" data-action="click->player#decrement" data-inputid="event_min_player">-</span>
+          </div>
+          <span class="player-count minus" data-player-target="count" data-inputid="event_min_player"><%= event.min_player || "1"  %></span>
+          <div class="input-group-append">
+            <span class="button-player-plus" type="button" data-action="click->player#increment" data-inputid="event_min_player">+</span>
+          </div>
         </div>
       </div>
-      <div class="input-group custom-player-count">
+      <div class="mb-3 increment-input-group">
         <p>Max Player</p>
-        <%= f.input :max_player, label: false, input_html: { class: "d-none", data: { player_target: "input" } } %>
-        <div class="input-group-prepend">
-          <button class="btn btn-outline-secondary player-btn-minus" type="button" data-action="click->player#decrement">-</button>
-        </div>
-        <span class="player-count plus" data-player-target="count">0</span>
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary player-btn-minus" type="button" data-action="click->player#increment">+</button>
+        <div class="increment-inputs">
+          <%= f.input :max_player, as: :integer, label: false, input_html: { value: event.max_player || 1, class: "d-none", data: { player_target: "input" } } %>
+          <div class="input-group-prepend">
+            <span class="button-player-minus" type="button" data-action="click->player#decrement" data-inputId="event_max_player">-</span>
+          </div>
+          <span class="player-count plus" data-player-target="count" data-inputId="event_max_player"><%= event.max_player || "1"  %></span>
+          <div class="input-group-append">
+            <span class="button-player-plus" type="button" data-action="click->player#increment" data-inputId="event_max_player">+</span>
+          </div>
         </div>
       </div>
     </div>
 
         <div style="text-align: center;">
-        <%= f.submit 'Save', class: "btn custom-button px-5 py-2"  %>
+        <%= f.submit 'Save', class: "btn custom-button"  %>
         </div>
       <% end %>
     </div>
