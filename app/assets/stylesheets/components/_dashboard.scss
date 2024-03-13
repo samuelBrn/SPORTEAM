@@ -57,8 +57,8 @@
 }
 
 .small-button {
-  font-size: 10px; /* Définissez la taille de la police */
-  padding: 0.25rem 0.5rem; /* Définissez les rembourrages du bouton */
+  font-size: 20px; /* Doublez la taille de la police */
+  padding: 0.5rem 1rem; /* Doublez les rembourrages */
   line-height: 1; /* Ajustez la hauteur de ligne */
   background-color: #8ECDDD;
   border-color: #FFFADD;
@@ -67,3 +67,4 @@
 .card, .card.h-100, .card.h-100-flex.flex-column {
   background-color: #FFFADD;
 }
+

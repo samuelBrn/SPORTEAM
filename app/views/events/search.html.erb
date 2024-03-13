@@ -1,0 +1,41 @@
+<div class="container">
+  <h1>Search a sport event</h1>
+  <div class="search-form">
+    <%= form_tag(events_path, method: :get, class: "search-form-inner") do %>
+      <div class="search-form-part">
+        <h4>Where do you want to play?</h4>
+        <%= text_field_tag :location, nil, class: "form-control", placeholder: "Enter location..." %>
+      </div>
+
+      <div class="search-form-part">
+        <h4>What sport(s) do you want to practice?</h4>
+        <div class="sport-categories">
+          <% @categories.each do |category| %>
+            <%= check_box_tag :category, category.id, false, id: "category_#{category.id}", class: "category-input", checked: current_user.favourite_categories.include?(category) %>
+            <%= label_tag "category_#{category.id}", class: "custom-label" do %>
+              <%= image_tag "#{category.sport.downcase}.png", width: "47px", height: "47px" %>
+              <%= category.sport %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="search-form-part">
+        <h4>When are you available?</h4>
+        <div class="schedule-event">
+          <input class="tag-selector" id="filter_demain" name="demain" type="checkbox" data-controller="filter" data-action="change->filter.toggleFilter" data-target="filter.tomorrow">
+          <label for="filter_demain">Demain</label>
+
+          <input class="tag-selector" id="filter_ce_weekend" name="ce_weekend" type="checkbox" data-controller="filter" data-action="change->filter.toggleFilter" data-target="filter.thisWeekend">
+          <label for="filter_ce_weekend">Ce week-end</label>
+
+          <input class="tag-selector" id="filter_next_7_days" name="next_7_days" type="checkbox" data-controller="filter" data-action="change->filter.toggleFilter" data-target="filter.next7Days">
+          <label for="filter_next_7_days">7 jours</label>
+        </div>
+      </div>
+
+
+      <button data-action="click->filter.search">Search</button>
+
+    <% end %>
+  </div>
+</div>
