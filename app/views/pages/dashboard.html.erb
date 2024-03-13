@@ -7,52 +7,45 @@
 
 <div class="container schedule-container">
   <div class="row">
-    <!-- Prochain événement -->
-    <div class="col-6 card-container">
-      <div class="card">
-        <% if @next_event.category.image.attached? %>
-          <%= image_tag @next_event.category.image, alt: @next_event.category.sport, class: 'card-img-top' %>
-          <div class="card-body">
-            <p>You have <%= @next_event.category.sport %> on <%= @next_event.start_at.strftime("%A %B %e") %></p>
-          </div>
-        <% else %>
-          <p>No upcoming events</p>
-        <% end %>
+<!-- Prochain événement -->
+<div class="col-6 card-container">
+  <div class="card h-100 d-flex flex-column">
+    <% if @next_event && @next_event.image.attached? %>
+      <div class="card-img-top d-flex justify-content-center" style="overflow: hidden;">
+        <%= image_tag @next_event.image, alt: @next_event.name, class: 'img-fluid rounded', style: 'max-height: 200px;' %>
       </div>
-    </div>
-
-    <!-- Préférences -->
-    <div class="col-6 card-container">
-      <div class="card">
-        <div class="card-body">
-          <p>Your preferences</p>
-        <div class="sport-logos-container">
-  <% current_user.favourite_categories.each do |category| %>
-    <%= image_tag "#{category.sport.downcase}.png", alt: category.sport, class: "sport-logo small-logo" %>
-  <% end %>
+      <div class="card-body d-flex align-items-start flex-column">
+        <p class="mb-auto">You have <%= @next_event.category.sport %> on <%= @next_event.start_at.strftime("%A %B %e") %></p>
+      </div>
+    <% else %>
+      <div class="card-body">
+        <p class="card-text">No upcoming events</p>
+      </div>
+    <% end %>
+  </div>
 </div>
 
-  <!-- Bouton pour ouvrir la modale de choix des passions -->
-<button type="button" class="btn btn-primary small-button" data-bs-toggle="offcanvas" data-bs-target="#search-event" aria-controls="search-event">
-  your sports
-</button>
 
-
-        </div>
+<!-- Préférences -->
+<div class="col-6 card-container">
+  <div class="card h-100"> <!-- Ajout de la classe h-100 pour que la carte occupe toute la hauteur -->
+    <div class="card-body">
+      <p class="card-text">Your preferences</p>
+      <div class="sport-logos-container">
+        <% current_user.favourite_categories.each do |category| %>
+          <%= image_tag "#{category.sport.downcase}.png", alt: category.sport, class: "sport-logo small-logo" %>
+        <% end %>
       </div>
+      <!-- Bouton pour ouvrir la modale de choix des passions -->
+      <button type="button" class="btn btn-primary small-button" data-bs-toggle="offcanvas" data-bs-target="#search-event" aria-controls="search-event">
+        Your sports
+      </button>
     </div>
   </div>
+</div>
+
 
   <div class="row">
-    <!-- Recherche -->
-    <div class="col-6 card-container">
-      <div class="card">
-        <div class="card-body">
-          <%= link_to "Search", events_path, class: "search-link" %>
-        </div>
-      </div>
-    </div>
-
     <!-- Case vide pour le moment -->
     <div class="col-6 card-container">
       <div class="card">
@@ -90,4 +83,3 @@
 <% end %>
 </div>
 </div>
-
