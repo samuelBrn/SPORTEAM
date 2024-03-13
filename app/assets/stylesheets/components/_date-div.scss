@@ -1,19 +1,27 @@
 .glass-div {
-
   background: rgba(255, 255, 255, 0.12);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(4.7px);
   -webkit-backdrop-filter: blur(4.7px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: center;
+  width: 140px; /* Initial width */
+  height: 90px;
+  overflow: hidden;
 }
+
+.parent-div {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
 
 .centered {
   justify-content: center;
   align-items: center;
-  width: 200px; /* Initial width */
-  height: 150px; /* Initial height */
-  resize: both; /* Enable both horizontal and vertical resizing */
-  overflow: auto; /* Show scrollbar if content exceeds div size *//* Add border for clarity */
+  /* Initial height */
+  resize: both; /* Enable both horizontal and vertical resizing */ /* Show scrollbar if content exceeds div size *//* Add border for clarity */
   padding: 10px; /* Add padding for content */
 }
