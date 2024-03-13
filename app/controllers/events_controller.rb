@@ -28,8 +28,9 @@ class EventsController < ApplicationController
 
     end
 
-    def search
-    end
+  def search
+    @categories = Category.order(:sport)
+  end
 
   def show
   end

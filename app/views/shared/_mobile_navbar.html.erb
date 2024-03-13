@@ -3,20 +3,20 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-bottom">
   <div class="container-fluid">
     <%= link_to events_path , class: "nav-link search-toggle" do %>
-      <%= image_tag "map.png", width: "12px", height: "12px"%>
+      <i class="fa-solid fa-location-dot", width="12px", height="12px"></i>
     <% end %>
 
     <%= link_to dashboard_path, class: "nav-link search-toggle" do %>
-      <%= image_tag "dashboard.png", width: "12px", height: "12px" %>
+      <i class="fa-solid fa-user"></i>
     <% end %>
 
-    <%= link_to "#", class: "nav-link search-toggle", data: { bs_toggle: "offcanvas", bs_target: "#search-event" } do %>
-      <%= image_tag "search.png", width: "12px", height: "12px" %>
+    <%= link_to search_events_path, class: "nav-link search-toggle" do %>
+     <i class="fa-solid fa-magnifying-glass"></i>
 
     <% end %>
 
     <%= link_to new_event_path, class: "nav-link search-toggle" do %>
-    <%= image_tag "plus.png", width: "12px", height: "12px" %>
+     <i class="fa-solid fa-plus"></i>
     <% end %>
   </div>
 </div>
