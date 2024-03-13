@@ -20,7 +20,7 @@
               <% if event.user.avatar.attached? %>
                 <%= cl_image_tag event.user.avatar.key, width: 45, height: 45, crop: :fill  %>
               <% else %>
-                <%= image_path 'avatar', width: 45, height: 45 %>
+                <%= image_tag 'avatar.png', width: 45, height: 45 %>
               <% end %>
             </div>
           </div>
