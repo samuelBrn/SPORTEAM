@@ -1,7 +1,11 @@
 <div class="offcanvas offcanvas-bottom round-top modal-fullscreen event-show-offcanvas" id="event-<%= event.id %>">
   <div class="offcanvas-body small">
     <div class="event-show-card">
-      <div style="background-image: url(<%= cl_image_path( event.image.attached? ? event.image.key : "") %>)" class="event-show-card-main-picture"></div>
+      <div style="background-image: url(<%= cl_image_path( event.image.attached? ? event.image.key : "") %>)" class="event-show-card-main-picture">
+        <div class="glass-div">
+          <div class="round"><%= event.start_at.strftime( "%A %B %e %l %p %M") %><%= event.start_at.strftime( "%l:%M") %></div>
+        </div>
+      </div>
       <div class="mx-3 my-3">
       <div class="d-flex justify-content-between align-items-center">
         <h5 class="card-title bold"><%= event.name %></h5>
