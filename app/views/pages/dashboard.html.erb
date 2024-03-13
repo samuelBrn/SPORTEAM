@@ -10,7 +10,7 @@
     <!-- Prochain événement -->
     <div class="col-6 card-container">
       <div class="card">
-        <% if @next_event %>
+        <% if @next_event.category.image.attached? %>
           <%= image_tag @next_event.category.image, alt: @next_event.category.sport, class: 'card-img-top' %>
           <div class="card-body">
             <p>You have <%= @next_event.category.sport %> on <%= @next_event.start_at.strftime("%A %B %e") %></p>
