@@ -71,6 +71,9 @@ terrain_name_basketball = [
   "Terrain Léo Lagrange",
   "Terrain de sport des jardins Saint-Paul",
 ]
+start_date_range = DateTime.new(2024, 3, 20)..DateTime.new(2024, 4, 10)
+end_date_range = DateTime.new(2024, 3, 20, 8, 0, 0)..DateTime.new(2024, 4, 10, 20, 0, 0)
+
 
 adresses_paris_basketball.each_with_index do |adresse, index|
   event_basketball = Event.create!(
@@ -78,8 +81,8 @@ adresses_paris_basketball.each_with_index do |adresse, index|
       category_id: basket_cat.id,
       name: terrain_name_basketball[index],
       adress: adresse,
-      start_at: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default),
-      end_at: Faker::Time.between(from: DateTime.now, to: DateTime.now + 1, format: :default),
+      start_at: Faker::Time.between(from: start_date_range.begin, to: start_date_range.end, format: :default),
+      end_at: Faker::Time.between(from: end_date_range.begin, to: end_date_range.end, format: :default),
       status: ["planned", "ongoing", "completed"].sample,
       max_player: rand(5..20),
       min_player: rand(2..5),
