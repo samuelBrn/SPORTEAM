@@ -59,6 +59,13 @@ current_user.avatar.attach(io: File.open(image_path), filename: "user_1.png", co
 
 puts " Création d'event basketball..."
 
+description_basketball = [
+  "For fun, everyone's welcome to join in the game!",
+  "Get ready to hit the pavement and show off your skills in our streetball tournamenty.",
+  "Score some hoops and sizzle some burgers at our basketball BBQ bashm ",
+  "JOIN US FOR GOOD TIME 😀"
+]
+
 adresses_paris_basketball = [
   "22 Rue Duperré, 75009 Paris",
   "10 Rue Pierre Nicole, 75005 Paris",
@@ -86,7 +93,7 @@ adresses_paris_basketball.each_with_index do |adresse, index|
       status: ["planned", "ongoing", "completed"].sample,
       max_player: rand(5..20),
       min_player: rand(2..5),
-      description: Faker::Lorem.sentence(word_count: 10)
+      description: description_basketball[index]
     )
 
   image_path = Rails.root.join("app", "assets", "images", "event_#{index + 1}.png")
@@ -96,6 +103,12 @@ end
 
 puts " Création d'event football..."
 
+description_football = [
+  "Calling all football fanatics! Lace up your cleats and join us for some pigskin action on the field.",
+  "all levels welcome, let's have fun",
+  "Tis event is all about friendly competition, good vibes, and delicious treats on the sidelines.",
+  "LET'S PLAY FOOTBALL COMPETITION 100% !"
+]
 
 adresses_paris_football = [
   "68 Bd Poniatowski, 75012 Paris",
@@ -122,7 +135,8 @@ adresses_paris_football.each_with_index do |adresse, index|
       status: ["planned", "ongoing", "completed"].sample,
       max_player: rand(5..20),
       min_player: rand(2..5),
-      description: Faker::Lorem.sentence(word_count: 10)
+      description: description_football[index]
+
     )
   image_path = Rails.root.join("app", "assets", "images", "event_foot_#{index + 1}.png")
   event_football.image.attach(io: File.open(image_path), filename: "event_foot_#{index + 1}.png", content_type: "image/png")
@@ -130,6 +144,14 @@ adresses_paris_football.each_with_index do |adresse, index|
 end
 
 puts " Création d'event yoga..."
+
+description_yoga = [
+  "Hey yogis! Let's stretch, laugh, and relax together in the park.",
+  "No experience necessary, just bring your mat and good vibes!",
+  "start your day with a little zen and a lot of fun come",
+  "morning yoga,  laughter and relaxation. No judgment, good vibes and positive energy!"
+
+]
 
 adresses_paris_yoga = [
   "68 Rue Jean-Jacques Rousseau, 75001 Paris",
@@ -156,7 +178,7 @@ adresses_paris_yoga.each_with_index do |adresse, index|
       status: ["planned", "ongoing", "completed"].sample,
       max_player: rand(5..20),
       min_player: rand(2..5),
-      description: Faker::Lorem.sentence(word_count: 10)
+      description: description_yoga[index],
     )
   image_path = Rails.root.join("app", "assets", "images", "event_yoga_#{index + 1}.png")
   event_yoga.image.attach(io: File.open(image_path), filename: "event_yoga_#{index + 1}.png", content_type: "image/png")
