@@ -1,8 +1,8 @@
 <div class="offcanvas offcanvas-bottom round-top modal-fullscreen event-show-offcanvas" id="event-<%= event.id %>">
   <div class="offcanvas-body small">
     <div class="event-show-card">
-      <div style="background-image: url(<%= cl_image_path( event.image.attached? ? event.image.key : "") %>)" class="parent-div event-show-card-main-picture"></div>
-      <div class="mx-3 my-3">
+      <div style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(<%= cl_image_path( event.image.attached? ? event.image.key : "") %>)" class="parent-div event-show-card-main-picture"></div>
+      <div class="container">
         <div class="d-flex justify-content-between align-items-center pb-2">
           <h5 class="card-title bold"><%= event.name %></h5>
           <%= image_tag "#{event.category.sport.downcase}.png", class: , width: "47px", height: "47px" %>
@@ -37,8 +37,8 @@
 
 
         </div>
+        <%= link_to 'Join', participate_event_path(event), method: :post, class: 'join-cta' %>
       </div>
-        <%= button_to 'Join', participate_event_path(event), method: :post, class: 'join-cta' %>
     </div>
   </div>
 </div>
