@@ -21,35 +21,70 @@
   padding: 0;
 }
 
-
-.fa-location-dot {
-  font-size: 2rem;
-  color: #22668D;
-  margin-bottom: 2rem;
+.navbar-lewagon {
+  .fa-location-dot {
+    font-size: 2rem;
+    color: #22668D;
+    margin-bottom: 2rem;
   margin-top: 0,7rem;
+  }
+
+  .logo-img {
+    background-size: cover;
+    height: 180px;
+    padding: .5rem;
+    display: flex;
+    flex-direction: column;
+    img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+  }
+
+  .fa-user {
+    font-size: 2rem;
+    color: #22668D;
+    margin-bottom: 2rem;
+  margin-top: 0,7rem;
+  }
+
+  .fa-magnifying-glass {
+    font-size: 2rem;
+    color: #22668D;
+    margin-bottom: 2rem;
+  margin-top: 0,7rem;
+  }
+
+  .fa-plus {
+    font-size: 2rem;
+    color: #22668D;
+    margin-bottom: 2rem;
+  margin-top: 0,7rem;
+  }
 }
 
-.fa-user {
-  font-size: 2rem;
-  color: #22668D;
-  margin-bottom: 2rem;
-  margin-top: 0,7rem;
-}
-
-.fa-magnifying-glass {
-  font-size: 2rem;
-  color: #22668D;
-  margin-bottom: 2rem;
-  margin-top: 0,7rem;
-}
-
-.fa-plus {
-  font-size: 2rem;
-  color: #22668D;
-  margin-bottom: 2rem;
-  margin-top: 0,7rem;
-}
 
 .nav-link.search-toggle.active {
   i {color: white;}
+}
+
+
+.logo-img {
+  background-size: cover;
+  height: 180px;
+  padding: .5rem;
+  display: flex;
+  flex-direction: column;
+  img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+  }
+
 }

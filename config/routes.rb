@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'home', to: 'pages#home'
   patch 'update_profile', to: 'pages#update_profile' # Ajout de la route pour la mise à jour du profil
   patch 'profile', to: 'pages#update_profile', as: :user_profile
-  post '/favourites/update', to: 'favourites#update', as: :favourites_update
+  get '/events/:id/participate', to: 'participations#instant_create', as: 'participate_event'
 
 
   resources :events do
