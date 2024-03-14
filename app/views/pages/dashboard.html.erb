@@ -22,7 +22,6 @@
 
 <!-- Affichage des logos de sport pour la sélection des favoris -->
 <div class="gpt-sports-container my-4">
-<h3>Your favorites</h3>
   <%= form_tag(dashboard_path, method: :get, class: "gpt-update-favorites-form") do %>
     <div class="row row-cols-3 justify-content-center gpt-sport-cards-row">
       <% Category.all.each do |category| %>
@@ -43,3 +42,24 @@
     </div>
   <% end %>
 </div>
+
+<script>
+// JavaScript pour la sélection des cartes
+document.addEventListener('DOMContentLoaded', () => {
+  const cards = document.querySelectorAll('.gpt-sport-card');
+
+  cards.forEach(card => {
+    const checkbox = card.querySelector('.category-input');
+    // Marquer visuellement les cartes sélectionnées au chargement
+    if (checkbox.checked) {
+      card.classList.add('gpt-border-selected');
+    }
+
+    card.addEventListener('click', () => {
+      checkbox.checked = !checkbox.checked; // Basculer la sélection
+      card.classList.toggle('gpt-border-selected'); // Basculer la classe de sélection
+    });
+  });
+});
+
+</script>
