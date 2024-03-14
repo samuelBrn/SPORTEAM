@@ -48,3 +48,46 @@
   background-color: #8ECDDD;
   border-color: #FFFADD;
 }
+
+
+
+
+ /* Style des cartes de sélection des sports pour qu'elles correspondent aux boutons de filtre de date */
+.gpt-sport-card-col {
+  padding: 5px;
+}
+
+.gpt-sport-cards-row {
+  margin: 0;
+}
+
+.custom-label {
+  border: 3px solid transparent; /* Bordure initiale transparente */
+  border-radius: 10px; /* Arrondir les coins des cartes */
+  padding: 6px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centrer le contenu */
+  align-items: center; /* Centrer le contenu */
+  transition: border-color 0.3s ease; /* Animation fluide pour le changement de bordure */
+  cursor: pointer; /* Indiquer que la carte est cliquable */
+}
+
+.gpt-card-img {
+  max-width: 80%;
+  margin: 10px auto;
+}
+
+.category-input {
+  display: none; /* Cache complètement la case à cocher */
+}
+
+.gpt-sport-card.gpt-border-selected {
+  border-color: #23668d; /* Couleur de la bordure pour les cartes sélectionnées */
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.2); /* Ajoute une ombre pour les cartes sélectionnées */
+}
+
+.gpt-btn-update-favorites {
+  margin-bottom: 60px; /* Assure que le bouton ne soit pas caché par la navbar */
+}

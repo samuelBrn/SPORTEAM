@@ -22,13 +22,16 @@
 
 <!-- Affichage des logos de sport pour la sélection des favoris -->
 <div class="gpt-sports-container my-4">
+<h3>Your favorites</h3>
   <%= form_tag(dashboard_path, method: :get, class: "gpt-update-favorites-form") do %>
     <div class="row row-cols-3 justify-content-center gpt-sport-cards-row">
       <% Category.all.each do |category| %>
         <div class="col gpt-sport-card-col">
-          <div class="card gpt-sport-card <% if current_user.favourite_categories.include?(category) %>gpt-border-selected<% end %>" id="gpt_category_card_<%= category.id %>">
-            <img src="<%= image_path("#{category.sport.downcase}.png") %>" alt="<%= category.sport %>" class="gpt-card-img">
-            <%= check_box_tag "categories[]", category.id, current_user.favourite_categories.include?(category), id: "gpt_category_#{category.id}", class: "gpt-favorite-checkbox", data: { action: "click->gpt-myfavs#toggleSelection" } %>
+          <div class="card custom-label gpt-sport-card <% if current_user.favourite_categories.include?(category) %>gpt-border-selected<% end %>" id="gpt_category_card_<%= category.id %>">
+            <%= check_box_tag "categories[]", category.id, current_user.favourite_categories.include?(category), id: "gpt_category_#{category.id}", class: "category-input", data: { action: "click->gpt-myfavs#toggleSelection" } %>
+            <label for="gpt_category_#{category.id}" class="stretched-link">
+              <img src="<%= image_path("#{category.sport.downcase}.png") %>" alt="<%= category.sport %>" class="gpt-card-img">
+            </label>
           </div>
         </div>
       <% end %>
@@ -40,52 +43,3 @@
     </div>
   <% end %>
 </div>
-
-<style>
-  /* Custom CSS pour le style des cartes */
-  .gpt-sport-card-col {
-    padding: 5px;
-  }
-
-  .gpt-sport-cards-row {
-    margin: 0;
-  }
-
-  .gpt-sport-card {
-    border: 2px solid transparent;
-    border-radius: 10px;
-    transition: border-color 0.3s ease;
-  }
-
-  .gpt-sport-card.gpt-border-selected {
-    border-color: #23668d; /* Ajuster la couleur de la bordure pour les cartes sélectionnées */
-  }
-
-  .gpt-card-img {
-    max-width: 80%;
-    margin: 10px auto;
-  }
-
-  .gpt-favorite-checkbox {
-    display: none; /* Cache complètement la case à cocher */
-  }
-
-  .gpt-btn-update-favorites {
-    margin-bottom: 60px; /* Assure que le bouton ne soit pas caché par la navbar */
-  }
-</style>
-
-<script>
-  // JavaScript pour la sélection des cartes
-  document.addEventListener('DOMContentLoaded', () => {
-    const cards = document.querySelectorAll('.gpt-sport-card');
-
-    cards.forEach(card => {
-      card.addEventListener('click', (event) => {
-        const checkbox = card.querySelector('.gpt-favorite-checkbox');
-        checkbox.checked = !checkbox.checked;
-        card.classList.toggle('gpt-border-selected');
-      });
-    });
-  });
-</script>
