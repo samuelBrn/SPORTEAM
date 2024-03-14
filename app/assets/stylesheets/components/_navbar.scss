@@ -22,34 +22,30 @@
 }
 
 
-@keyframes shake {
-  20% {
-    transform: rotate(-15deg);
-  }
-  70% {
-    transform: rotate(15deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
-.fa-location-dot::before {
+.fa-location-dot {
   font-size: 2rem;
   color: #22668D;
+  margin-bottom: 2rem;
 }
 
-.fa-user::before {
+.fa-user {
   font-size: 2rem;
   color: #22668D;
+  margin-bottom: 2rem;
 }
 
-.fa-magnifying-glass::before {
+.fa-magnifying-glass {
   font-size: 2rem;
   color: #22668D;
+  margin-bottom: 2rem;
 }
 
-.fa-plus::before {
+.fa-plus {
   font-size: 2rem;
   color: #22668D;
+  margin-bottom: 2rem;
+}
+
+.nav-link.search-toggle.active {
+  i {color: white;}
 }

@@ -11,7 +11,7 @@
         <h4>What sport(s) do you want to practice?</h4>
         <div class="sport-categories">
           <% @categories.each do |category| %>
-            <%= check_box_tag :category, category.id, false, id: "category_#{category.id}", class: "category-input", checked: current_user.favourite_categories.include?(category) %>
+            <%= check_box_tag :category, category.id, false, id: "category_#{category.id}", class: "category-input", checked: current_user.favourite_categories.include?(category), name: "categories[]" %>
             <%= label_tag "category_#{category.id}", class: "custom-label" do %>
               <%= image_tag "#{category.sport.downcase}.png", width: "47px", height: "47px" %>
               <%= category.sport %>
@@ -22,13 +22,13 @@
       <div class="search-form-part">
         <h4>When are you available?</h4>
         <div class="schedule-event">
-          <input class="tag-selector" id="filter_demain" name="demain" type="checkbox" data-controller="filter" data-action="change->filter.toggleFilter" data-target="filter.tomorrow">
+          <input class="tag-selector" id="filter_demain" name="schedule" type="checkbox" data-controller="filter" data-action="change->filter.toggleFilter" data-target="filter.tomorrow" value="1">
           <label for="filter_demain">Demain</label>
 
-          <input class="tag-selector" id="filter_ce_weekend" name="ce_weekend" type="checkbox" data-controller="filter" data-action="change->filter.toggleFilter" data-target="filter.thisWeekend">
+          <input class="tag-selector" id="filter_ce_weekend" name="schedule" type="checkbox" data-controller="filter" data-action="change->filter.toggleFilter" data-target="filter.thisWeekend" value="2">
           <label for="filter_ce_weekend">Ce week-end</label>
 
-          <input class="tag-selector" id="filter_next_7_days" name="next_7_days" type="checkbox" data-controller="filter" data-action="change->filter.toggleFilter" data-target="filter.next7Days">
+          <input class="tag-selector" id="filter_next_7_days" name="schedule" type="checkbox" data-controller="filter" data-action="change->filter.toggleFilter" data-target="filter.next7Days" value="7">
           <label for="filter_next_7_days">7 jours</label>
         </div>
       </div>
