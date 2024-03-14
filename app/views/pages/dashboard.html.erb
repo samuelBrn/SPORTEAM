@@ -15,7 +15,7 @@
   <%= render "events/event_cards", events: @past_events  %>
 </section>
 
-<div class="container schedule-container pb-5 mb-4">
+<div class="container schedule-container pb-5 mb-4" data-controller="sportcheck">
   <div class="row">
     <div class="gpt-sports-container my-4">
       <%= form_tag(dashboard_path, method: :get, class: "gpt-update-favorites-form") do %>
@@ -38,26 +38,3 @@
     </div>
   </div>
 </div>
-
-
-<script>
-// JavaScript pour la sélection des cartes
-const cards = document.querySelectorAll('.gpt-sport-card');
-
-cards.forEach(card => {
-  card.addEventListener('click', () => {
-    const checkbox = card.querySelector('.category-input');
-    console.log(checkbox)
-    // Marquer visuellement les cartes sélectionnées au chargement
-    if (checkbox.checked) {
-      checkbox.checked = false;
-    } else {
-      checkbox.checked = true;
-    }
-    card.classList.toggle('border-sport-bg')
-    card.classList.toggle('border-sport-selected');
-
-  });
-});
-
-</script>
