@@ -1,6 +1,11 @@
 .pages-dashboard {
   h3 {
-    margin: 0;
+    margin-top: 1rem;
+  }
+  h1 {
+    margin-bottom: 1rem;
+    margin-left: 0;
+    margin-top: 2rem;
   }
 }
 .events {
@@ -9,6 +14,10 @@
   overflow-x: scroll;
   gap: 1rem;
   padding: 1rem;
+  scrollbar-color: $sport-main $sport-main;
+  &::-webkit-scrollbar-thumb {
+    background: $sport-main;
+  }
   .card-event {
     flex: 0 0 240px;
   }
