@@ -1,7 +1,6 @@
 <div class="welcome-container">
   <div class="container">
     <h1>Welcome back, <%= current_user.first_name %></h1>
-
     <h3>You're set to attend <strong><%= @next_events.count %></strong> <%= "event".pluralize(@next_events.count) %></h3>
   </div>
   <section class="events">
@@ -13,51 +12,29 @@
   <h3>You've attendeed <strong><%= @past_events.count %></strong> <%= "event".pluralize(@past_events.count) %></h3>
 </div>
 <section class="events">
-    <%= render "events/event_cards", events: @past_events  %>
+  <%= render "events/event_cards", events: @past_events  %>
 </section>
 
-<div class="container schedule-container">
+<div class="container schedule-container pb-5 mb-4" data-controller="sportcheck">
   <div class="row">
-
-<!-- Préférences -->
-<div class="col-6 card-container">
-<p class="card-text">Your preferences</p>
-  <div class="card h-100"> <!-- Ajout de la classe h-100 pour que la carte occupe toute la hauteur -->
-    <div class="card-body">
-      <div class="sport-logos-container">
-        <% current_user.favourite_categories.each do |category| %>
-          <%= image_tag "#{category.sport.downcase}.png", alt: category.sport, class: "sport-logo small-logo" %>
-        <% end %>
-      </div>
-      <!-- Bouton pour ouvrir la modale de choix des passions -->
-      <button type="button" class="small-button" data-bs-toggle="offcanvas" data-bs-target="#select-fav">
-        Your sports
-      </button>
-    </div>
-  </div>
-</div>
-
-
-
-<!-- modal d'actualisation des favoris -->
-<div class="offcanvas offcanvas-bottom round-top" tabindex="-1" id="select-fav" aria-labelledby="offcanvasBottomLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasBottomLabel">Select your favorites</h5>
-    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body small">
-  <%= form_tag(dashboard_path, method: :get, class: "search-form-inner") do %>
-    <div data-controller="myfavs">
-      <div data-myfavs-target="categories">
-        <% Category.all.each do |category| %>
-          <div class="form-check form-switch">
-            <%= check_box_tag "categories[]", category.id, params[:categories]&.map(&:to_i)&.include?(category.id), class: 'form-check-input', id: "category_#{category.id}", data: { action: "change->myfavs#filter" } %>
-            <%= label_tag "category_#{category.id}", category.sport, class: 'form-check-label' %>
+    <div class="gpt-sports-container my-4">
+      <%= form_tag(dashboard_path, method: :get, class: "gpt-update-favorites-form") do %>
+        <div class="sport-categories">
+          <% Category.all.order(:sport).each do |category| %>
+            <%# if current_user.favourite_categories.include?(category) %>
+            <label for="category_<%= category.id %>" class="gpt-sport-card custom-label <%= current_user.favourite_categories.include?(category) ? 'border-sport-selected' : 'border-sport-bg' %>">
+              <%= check_box_tag "categories[]", category.id, current_user.favourite_categories.include?(category), id: "gpt_category_#{category.id}", class: "category-input", data: { action: "click->gpt-myfavs#toggleSelection" } %>
+              <img src="<%= image_path("#{category.sport.downcase}.png") %>" alt="<%= category.sport %>" style="width: 47px; height: 47px;">
+              <%= category.sport %>
+            </label>
+          <% end %>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-12 text-center mt-4">
+            <%= submit_tag "Update favorites", class: "btn-update-favorites" %>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
-    <%= submit_tag "Search", class: "btn btn-primary" %>
-  <% end %>
-</div>
+  </div>
 </div>

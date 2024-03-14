@@ -11,3 +11,12 @@ $sport-main: #FFCC70;
 $sport-bg: #FFFADD;
 $sport-secondary: #8ECDDD;
 $sport-main-pitch: #22668D;
+
+
+.border-sport-bg {
+  border: 1px solid white !important;
+}
+
+.border-sport-selected {
+  border: 1px solid black !important;
+}

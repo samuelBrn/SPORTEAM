@@ -9,7 +9,7 @@
     <div class="card-event-content">
       <i class="fa-regular fa-calendar"></i><p><%= event.start_at.strftime("%A %B %e") %></p>
       <i class="fa-regular fa-clock"></i><p><%= event.duration %></p>
-      <i class="fa-solid fa-location-dot"></i><p><%= event.name %> — <span><%= event.adress.split(",").last.strip %></span></p>
+      <i class="fa-solid fa-location-pin"></i><p><%= event.name %> — <span><%= event.adress.split(",").last.strip %></span></p>
     </div>
   </div>
 <% end %>

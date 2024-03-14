@@ -24,4 +24,5 @@ class FavouritesController < ApplicationController
     @favourite = Favourite.find(params[:id])
   end
 
+
 end
