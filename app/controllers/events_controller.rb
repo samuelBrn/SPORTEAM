@@ -4,14 +4,20 @@ class EventsController < ApplicationController
     def index
       # Commencer par tous les événements si l'utilisateur n'est pas connecté
       @events = Event.all
-
-
+    
+      # {"location"=>"Paris", "categories"=>["9", "7", "8"], "schedule"=>"7"}
       # Si l'utilisateur est connecté, limiter d'abord les événements à ses catégories favorites
-      @events = @events.where(category_id: current_user.categories.pluck(:id)) if user_signed_in?
+
       # Si des catégories sont sélectionnées via le formulaire, filtrer par ces catégories
       if params[:categories].present?
         @events = @events.where(category_id: params[:categories])
+      else
+        @events = @events.where(category_id: current_user.categories.pluck(:id))
       end
+
+      # if params[:schedule].present?
+      #   @events = @events.where("start_at >= ? AND end_at <= ?", DateTime.now, DateTime.now + 8.day)
+      # end
 
       # Préparer les données pour la carte
       @markers = @events.geocoded.map do |event|
