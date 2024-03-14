@@ -4,7 +4,7 @@ class EventsController < ApplicationController
     def index
       # Commencer par tous les événements si l'utilisateur n'est pas connecté
       @events = Event.all
-    
+
       # {"location"=>"Paris", "categories"=>["9", "7", "8"], "schedule"=>"7"}
       # Si l'utilisateur est connecté, limiter d'abord les événements à ses catégories favorites
 
@@ -48,6 +48,8 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user = current_user
+    # @user_created_events = current_user.events
+
 
     if @event.save
       Participation.create(user: current_user, event: @event)
