@@ -20,7 +20,7 @@
     <div class="gpt-sports-container my-4">
       <%= form_tag(dashboard_path, method: :get, class: "gpt-update-favorites-form") do %>
         <div class="sport-categories">
-          <% Category.all.each do |category| %>
+          <% Category.all.order(:sport).each do |category| %>
             <%# if current_user.favourite_categories.include?(category) %>
             <label for="category_<%= category.id %>" class="gpt-sport-card custom-label <%= current_user.favourite_categories.include?(category) ? 'border-sport-selected' : 'border-sport-bg' %>">
               <%= check_box_tag "categories[]", category.id, current_user.favourite_categories.include?(category), id: "gpt_category_#{category.id}", class: "category-input", data: { action: "click->gpt-myfavs#toggleSelection" } %>
