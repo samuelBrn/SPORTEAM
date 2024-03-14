@@ -41,19 +41,19 @@
   margin-bottom: 10px; /* Espacement sous les logos */
 }
 
-.gpt-sport-card {
-  background-color: white;
-  border-color: #22668D;
-  width: 100px;
-  height: 100px;
-}
+// .gpt-sport-card {
+//   background-color: white;
+//   border-color: #22668D;
+//   width: 100px;
+//   height: 100px;
+// }
 
-.gpt-card-img {
-  background-color: white;
-  border-color: #22668D;
-  width: 100px;
-  height: 100px;
-}
+// .gpt-card-img {
+//   background-color: white;
+//   border-color: #22668D;
+//   width: 100px;
+//   height: 100px;
+// }
 
 .gpt-border-selected {
   background-color: white;
@@ -98,7 +98,7 @@
   flex-direction: column;
   align-items: center; /* Centrer le contenu */
   justify-content: center; /* Centrer le contenu */
-  background-color: #faf6f0; /* Fond des cartes */
+  background-color: white; /* Fond des cartes */
   cursor: pointer; /* Indiquer que la carte est cliquable */
   transition: all 0.3s ease; /* Animation fluide pour les changements d'état */
 }
@@ -119,7 +119,7 @@
 
 .gpt-btn-update-favorites {
   margin-bottom: 60px; /* Assure que le bouton ne soit pas caché par la navbar */
-  background-color: #faf6f0;
+  background-color: $sport-bg;
   color: #22668D;
   padding: 0.7rem;
   border-radius: 30px;

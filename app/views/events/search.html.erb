@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Search a sport event</h1>
-  <div class="search-form">
+  <div class="search-form pb-5 mb-5">
     <%= form_tag(events_path, method: :get, class: "search-form-inner") do %>
       <div class="search-form-part">
         <h4>Where do you want to play?</h4>
@@ -11,11 +11,11 @@
         <h4>What sport(s) do you want to practice?</h4>
         <div class="sport-categories">
           <% @categories.each do |category| %>
-            <%= check_box_tag :category, category.id, false, id: "category_#{category.id}", class: "category-input", checked: current_user.favourite_categories.include?(category), name: "categories[]" %>
-            <%= label_tag "category_#{category.id}", class: "custom-label" do %>
+            <label for="category_<%= category.id %>" class="gpt-sport-card custom-label <%= current_user.favourite_categories.include?(category) ? 'border-sport-selected' : 'border-sport-bg' %>">
+              <%= check_box_tag "categories[]", category.id, current_user.favourite_categories.include?(category), id: "gpt_category_#{category.id}", class: "category-input", data: { action: "click->gpt-myfavs#toggleSelection" } %>
               <%= image_tag "#{category.sport.downcase}.png", width: "47px", height: "47px" %>
               <%= category.sport %>
-            <% end %>
+            </label>
           <% end %>
         </div>
       </div>
@@ -39,3 +39,26 @@
     <% end %>
   </div>
 </div>
+
+
+<script>
+// JavaScript pour la sélection des cartes
+const cards = document.querySelectorAll('.gpt-sport-card');
+
+cards.forEach(card => {
+  card.addEventListener('click', () => {
+    const checkbox = card.querySelector('.category-input');
+    console.log(checkbox)
+    // Marquer visuellement les cartes sélectionnées au chargement
+    if (checkbox.checked) {
+      checkbox.checked = false;
+    } else {
+      checkbox.checked = true;
+    }
+    card.classList.toggle('border-sport-bg')
+    card.classList.toggle('border-sport-selected');
+
+  });
+});
+
+</script>
