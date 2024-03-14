@@ -1,41 +1,47 @@
-<div class="offcanvas offcanvas-bottom round-top modal-fullscreen event-show-offcanvas" id="event-<%= event.id %>">
+<div class="offcanvas offcanvas-bottom round-top modal-fullscreen  event-show-offcanvas" id="event-<%= event.id %>">
   <div class="offcanvas-body small">
     <div class="event-show-card">
-      <div style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(<%= cl_image_path( event.image.attached? ? event.image.key : "") %>)" class="parent-div event-show-card-main-picture"></div>
-      <div class="container">
-        <div class="d-flex justify-content-between align-items-center pb-2">
-          <h5 class="card-title bold"><%= event.name %></h5>
-          <%= image_tag "#{event.category.sport.downcase}.png", class: , width: "47px", height: "47px" %>
+      <div style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(<%= cl_image_path( event.image.attached? ? event.image.key : "") %>)" class="parent-div event-show-card-main-picture">
+        <div class="offcanvas-img p-4">
+        <%= image_tag "#{event.category.sport.downcase}.png", class: , width: "100px", height: "100px" %>
         </div>
-        <div class="d-flex des">
-          <%= image_tag "location.png", width: "23px", height: "23px" %>
-          <p class="card-text" ><%= event.adress %></p>
-        </div>
-        <div class="d-flex des">
-          <%= image_tag "time.png", width: "19px", height: "17px" %>
-          <p class="card-text"><%= event.start_at.strftime( "%a, %e %b %Y") %>, <strong><%= event.start_at.strftime( "%I:%M %p") %></strong></p>
+      </div>
 
+      <div class="container px-4 py-4">
+        <div class="d-flex justify-content-between align-items-center pb-2">
+          <h4 class="card-title bold "><%= event.name %></h4>
+        </div>
+
+        <div class="d-flex des">
+          <p class="card-text" ><i class="fa-solid fa-location-dot"></i><%= event.adress %></p>
+        </div>
+
+        <div class="d-flex ">
+          <div class="d-flex des">
+            <p class="card-text" ><i class="fa-regular fa-calendar"></i>  <%= event.start_at.strftime( "%a, %e %b %Y") %> </p>
+          </div>
+
+          <div class="d-flex des">
+            <p class="card-text"><i class="fa-regular fa-clock"></i> <strong><%= event.start_at.strftime( "%I:%M %p") %></strong></p>
+          </div>
         </div>
 
         <div class="pt-3">
-
           <p class="card-text" ><%= event.description %></p>
 
-        <div class="d-flex justify-content-between align-items-center">
-          <p class="card-text"><strong>Participants:</strong> <%= event.current_participants_count %>/ <%= event.max_player %></p>
-          <% unless event.participations.count < event.max_player %>
-            <p class="des">Cet événement a déjà atteint le nombre maximum de participants.</p>
-          <% end %>
-          <div class="d-flex align-items-center">
-            <% event.users.each do |user| %>
-              <% if user.avatar.attached? %>
-                <%= cl_image_tag user.avatar.key, width: 45, height: 45, style: "border-radius : 50%"  %>
-              <% end %>
+          <div class="d-flex justify-content-between align-items-center">
+            <p class="card-text"><strong>Participants:</strong> <%= event.current_participants_count %>/ <%= event.max_player %></p>
+            <% unless event.participations.count < event.max_player %>
+              <p class="des">Cet événement a déjà atteint le nombre maximum de participants.</p>
             <% end %>
+            <div class="d-flex align-items-center">
+              <% event.users.each do |user| %>
+                <% if user.avatar.attached? %>
+                  <%= cl_image_tag user.avatar.key, width: 45, height: 45, style: "border-radius : 50%"  %>
+                <% end %>
+              <% end %>
+            </div>
           </div>
-          </div>
-
-
         </div>
         <%= link_to 'Join', participate_event_path(event), method: :post, class: 'join-cta' %>
       </div>
