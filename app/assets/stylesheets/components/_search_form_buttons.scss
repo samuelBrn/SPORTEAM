@@ -19,7 +19,7 @@
   font-size: 1rem;
   border-radius: 50rem;
   padding: 0.5rem 0.5rem;
-  background-color:#faf6f0;
+  background-color:$sport-bg;
   color:#22668D;
   font-weight: bold;
   border: 1px solid;
@@ -34,7 +34,7 @@
 }
 
 button {
-  background-color:#faf6f0;
+  background-color:$sport-bg;
   color: #22668D;
   width: 100px;
   display: inline-block;
@@ -84,7 +84,7 @@ background: #FFCC70;
 }
 
 .custom-label {
-  background-color: #faf6f0;
+  background-color: $sport-bg;
   border-radius: 5px;
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.2);
   align-items: center;
@@ -100,7 +100,7 @@ background: #FFCC70;
   transform: scale(0);
 }
 .category-input:checked + label {
-  border: 3px solid $sport-main-pitch;
+  // border: 3px solid $sport-main-pitch;
 }
 
 .search-form {

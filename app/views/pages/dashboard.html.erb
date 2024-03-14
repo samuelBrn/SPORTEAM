@@ -1,7 +1,6 @@
 <div class="welcome-container">
   <div class="container">
     <h1>Welcome back, <%= current_user.first_name %></h1>
-
     <h3>You're set to attend <strong><%= @next_events.count %></strong> <%= "event".pluralize(@next_events.count) %></h3>
   </div>
   <section class="events">
@@ -13,79 +12,52 @@
   <h3>You've attendeed <strong><%= @past_events.count %></strong> <%= "event".pluralize(@past_events.count) %></h3>
 </div>
 <section class="events">
-    <%= render "events/event_cards", events: @past_events  %>
+  <%= render "events/event_cards", events: @past_events  %>
 </section>
 
-<div class="container schedule-container">
+<div class="container schedule-container pb-5 mb-4">
   <div class="row">
-
-
-<!-- Affichage des logos de sport pour la sélection des favoris -->
-<div class="gpt-sports-container my-4">
-  <%= form_tag(dashboard_path, method: :get, class: "gpt-update-favorites-form") do %>
-    <div class="row row-cols-3 justify-content-center gpt-sport-cards-row">
-      <% Category.all.each do |category| %>
-        <div class="col gpt-sport-card-col">
-          <div class="card gpt-sport-card <% if current_user.favourite_categories.include?(category) %>gpt-border-selected<% end %>" id="gpt_category_card_<%= category.id %>">
-            <img src="<%= image_path("#{category.sport.downcase}.png") %>" alt="<%= category.sport %>" class="gpt-card-img">
-            <%= check_box_tag "categories[]", category.id, current_user.favourite_categories.include?(category), id: "gpt_category_#{category.id}", class: "gpt-favorite-checkbox", data: { action: "click->gpt-myfavs#toggleSelection" } %>
+    <div class="gpt-sports-container my-4">
+      <%= form_tag(dashboard_path, method: :get, class: "gpt-update-favorites-form") do %>
+        <div class="sport-categories">
+          <% Category.all.each do |category| %>
+            <%# if current_user.favourite_categories.include?(category) %>
+            <label for="category_<%= category.id %>" class="gpt-sport-card custom-label <%= current_user.favourite_categories.include?(category) ? 'border-sport-selected' : 'border-sport-bg' %>">
+              <%= check_box_tag "categories[]", category.id, current_user.favourite_categories.include?(category), id: "gpt_category_#{category.id}", class: "category-input", data: { action: "click->gpt-myfavs#toggleSelection" } %>
+              <img src="<%= image_path("#{category.sport.downcase}.png") %>" alt="<%= category.sport %>" style="width: 47px; height: 47px;">
+              <%= category.sport %>
+            </label>
+          <% end %>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-12 text-center mt-4">
+            <%= submit_tag "Update favorites", class: "btn-update-favorites" %>
           </div>
         </div>
       <% end %>
     </div>
-    <div class="row justify-content-center">
-      <div class="col-12 text-center mt-4">
-        <%= submit_tag "Update favorites", class: "btn-update-favorites" %>
-      </div>
-    </div>
-  <% end %>
+  </div>
 </div>
 
-<style>
-  /* Custom CSS pour le style des cartes */
-  .gpt-sport-card-col {
-    padding: 5px;
-  }
-
-  .gpt-sport-cards-row {
-    margin: 0;
-  }
-
-  .gpt-sport-card {
-    border: 2px solid transparent;
-    border-radius: 10px;
-    transition: border-color 0.3s ease;
-  }
-
-  .gpt-sport-card.gpt-border-selected {
-    border-color: #23668d; /* Ajuster la couleur de la bordure pour les cartes sélectionnées */
-  }
-
-  .gpt-card-img {
-    max-width: 80%;
-    margin: 10px auto;
-  }
-
-  .gpt-favorite-checkbox {
-    display: none; /* Cache complètement la case à cocher */
-  }
-
-  .gpt-btn-update-favorites {
-    margin-bottom: 60px; /* Assure que le bouton ne soit pas caché par la navbar */
-  }
-</style>
 
 <script>
-  // JavaScript pour la sélection des cartes
-  document.addEventListener('DOMContentLoaded', () => {
-    const cards = document.querySelectorAll('.gpt-sport-card');
+// JavaScript pour la sélection des cartes
+const cards = document.querySelectorAll('.gpt-sport-card');
 
-    cards.forEach(card => {
-      card.addEventListener('click', (event) => {
-        const checkbox = card.querySelector('.gpt-favorite-checkbox');
-        checkbox.checked = !checkbox.checked;
-        card.classList.toggle('gpt-border-selected');
-      });
-    });
+cards.forEach(card => {
+  card.addEventListener('click', () => {
+    const checkbox = card.querySelector('.category-input');
+    console.log(checkbox)
+    // Marquer visuellement les cartes sélectionnées au chargement
+    if (checkbox.checked) {
+      checkbox.checked = false;
+    } else {
+      checkbox.checked = true;
+    }
+    card.classList.toggle('border-sport-bg')
+    card.classList.toggle('border-sport-selected');
+
   });
+});
+
 </script>
