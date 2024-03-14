@@ -2,20 +2,20 @@
 
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-bottom">
   <div class="container-fluid">
-    <%= link_to events_path , class: "nav-link search-toggle" do %>
+    <%= link_to events_path , class: "nav-link search-toggle #{"active" if controller_name == "events" && action_name == "index"}"  do %>
       <i class="fa-solid fa-location-dot", width="12px", height="12px"></i>
     <% end %>
 
-    <%= link_to dashboard_path, class: "nav-link search-toggle" do %>
+    <%= link_to dashboard_path, class: "nav-link search-toggle #{"active" if controller_name == "pages" && action_name == "dashboard"}" do %>
       <i class="fa-solid fa-user"></i>
     <% end %>
 
-    <%= link_to search_events_path, class: "nav-link search-toggle" do %>
+    <%= link_to search_events_path, class: "nav-link search-toggle #{"active" if controller_name == "events" && action_name == "search"}" do %>
      <i class="fa-solid fa-magnifying-glass"></i>
 
     <% end %>
 
-    <%= link_to new_event_path, class: "nav-link search-toggle" do %>
+    <%= link_to new_event_path, class: "nav-link search-toggle #{"active" if controller_name == "events" && action_name == "new"}" do %>
      <i class="fa-solid fa-plus"></i>
     <% end %>
   </div>
