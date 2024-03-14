@@ -1,4 +1,4 @@
-<div class="offcanvas offcanvas-bottom round-top modal-fullscreen  event-show-offcanvas show" id="event-<%= event.id %>">
+<div class="offcanvas offcanvas-bottom round-top modal-fullscreen  event-show-offcanvas" id="event-<%= event.id %>">
   <div class="offcanvas-body small">
     <div class="event-show-card">
       <div style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(<%= cl_image_path( event.image.attached? ? event.image.key : "") %>)" class="parent-div event-show-card-main-picture">
@@ -34,7 +34,7 @@
         </div>
 
 
-        <p class="card-text" ><%= event.description %></p>
+        <p class="card-text description" ><%= event.description %></p>
 
 
 
@@ -45,7 +45,7 @@
         </div>
 
 
-        <%= link_to 'Join', participate_event_path(event), method: :post, class: 'join-cta flex-grow' %>
+        <%= link_to 'Join', participate_event_path(event), method: :post, class: 'btn-update-favorites' %>
       </div>
     </div>
   </div>
