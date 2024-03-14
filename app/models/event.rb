@@ -23,4 +23,8 @@ class Event < ApplicationRecord
     min < 10 ? "#{hour.to_i}h0#{min.to_i}" : "#{hour.to_i}h#{min.to_i}"
   end
 
+  def participant_gauge
+    (participations.count.fdiv(max_player) * 100).round
+  end
+
 end
