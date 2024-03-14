@@ -58,7 +58,7 @@ third_user.avatar.attach(io: File.open(image_path), filename: "user_1.png", cont
 
 current_user = User.create!(
   first_name: "Alex",
-  last_name: "toc",
+  last_name: "Toc",
   email: "test@test.com",
   password: 'password', # Assurez-vous que votre modèle User utilise has_secure_password ou Devise
   phone_number: Faker::PhoneNumber.phone_number,
@@ -80,13 +80,13 @@ adresses_paris_basketball = [
   "22 Rue Duperré, 75009 Paris",
   "10 Rue Pierre Nicole, 75005 Paris",
   "60 Rue François 1er, 75008 Paris",
-  "142 Quai de Jemmapes, 75010 Paris",
+  "142 Quai de Jemmapes, 75010 Paris"
 ]
 terrain_name_basketball = [
   "Terrain de basket du square Claude Bernard",
   "Terrain Stalingrad",
   "Terrain Léo Lagrange",
-  "Terrain de sport des jardins Saint-Paul",
+  "Terrain de sport des jardins Saint-Paul"
 ]
 start_date_range = DateTime.new(2024, 2, 20)..DateTime.new(2024, 4, 10)
 
@@ -111,12 +111,12 @@ adresses_paris_basketball.each_with_index do |adresse, index|
 
 end
 
-puts " Création d'event football..."
+puts " Creation of event football..."
 
 description_football = [
   "Calling all football fanatics! Lace up your cleats and join us for some pigskin action on the field.",
-  "all levels welcome, let's have fun",
-  "Tis event is all about friendly competition, good vibes, and delicious treats on the sidelines.",
+  "All levels welcome, let's have fun",
+  "This event is all about friendly competition, good vibes, and delicious treats on the sidelines.",
   "LET'S PLAY FOOTBALL COMPETITION 100% !"
 ]
 
@@ -153,13 +153,13 @@ adresses_paris_football.each_with_index do |adresse, index|
 
 end
 
-puts " Création d'event yoga..."
+puts " Creation of event yoga..."
 
 description_yoga = [
   "Hey yogis! Let's stretch, laugh, and relax together in the park.",
   "No experience necessary, just bring your mat and good vibes!",
-  "start your day with a little zen and a lot of fun come",
-  "morning yoga,  laughter and relaxation. No judgment, good vibes and positive energy!"
+  "Start your day with a little zen and a lot of fun come!",
+  "Morning yoga,  laughter and relaxation. No judgment, good vibes and positive energy only!"
 
 ]
 
@@ -173,7 +173,7 @@ terrain_name_yoga = [
   "YUJ YOGA STUDIO ",
   "WeYog",
   "Rêve yogain",
-  "France Yoga",
+  "France Yoga"
 ]
 
 adresses_paris_yoga.each_with_index do |adresse, index|
@@ -205,7 +205,7 @@ User.all.each do |user|
 end
 
 # Création de favoris aléatoires pour lier les utilisateurs aux catégories de sport
-other_user = User.where.not(first_name: "dad")
+other_user = User.where.not(first_name: "Alex")
 other_user.each do |user|
   user.favourites.create(
     category_id: Category.all.sample.id # Corrigé ici
