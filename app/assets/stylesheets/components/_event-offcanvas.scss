@@ -1,7 +1,7 @@
 .offcanvas.event-show-offcanvas {
   background-color: white;
   overflow: hidden;
-  height: 60vh !important;
+  height: 70vh !important;
   .offcanvas-body {
     padding: 0;
     font-size: 19px;
@@ -10,21 +10,6 @@
 }
 
 .offcanvas {
-  .offcanvas-img {
-    background-size: cover;
-    height: 180px;
-    padding: .5rem;
-    display: flex;
-    flex-direction: column;
-
-    img {
-      width: 50px;
-      height: 50px;
-      object-fit: cover;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.6);
-    }
-  }
 }
 
 
@@ -35,9 +20,37 @@
   background-color:#FFFADD ;
   box-shadow: 0px 4px 16px rgba(0,0,0,0.2);
   .event-show-card-main-picture {
-    height: 230px;
+    flex: 0 0 250px;
     background-size: cover;
     background-position: center;
+    display: flex;
+    flex-direction: column;
+    h4 {
+      color: white;
+      text-shadow: 0px 4px 16px rgba(0,0,0,0.2);
+    }
+    .offcanvas-img {
+      background-size: cover;
+      padding: .5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.6);
+      }
+    }
+  }
+  .card-event-content {
+    display: grid;
+    grid-template-columns: 1rem 1fr;
+    grid-gap: 0.5rem;
+    align-items: baseline;
+
   }
 }
 
@@ -56,4 +69,19 @@
   box-shadow: 0px 4px 16px rgba(0,0,0,0.2);
   justify-content: space-between;
   align-items: center;
+}
+
+.space-between-divs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  p {
+    margin: 0;
+    font-size: 20px;
+  }
+  i {
+    color: $sport-main;
+    font-size: 20px;
+  }
 }
