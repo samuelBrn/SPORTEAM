@@ -57,7 +57,7 @@ image_path = Rails.root.join("app", "assets", "images", "user_1.png")
 third_user.avatar.attach(io: File.open(image_path), filename: "user_1.png", content_type: "image/png")
 
 current_user = User.create!(
-  first_name: "dad",
+  first_name: "Alex",
   last_name: "toc",
   email: "test@test.com",
   password: 'password', # Assurez-vous que votre modèle User utilise has_secure_password ou Devise
