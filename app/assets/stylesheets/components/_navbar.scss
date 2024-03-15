@@ -88,3 +88,13 @@
   }
 
 }
+
+.container-fluid {
+display: flex;
+flex-wrap: inherit;
+align-items: center;
+justify-content: space-between;
+margin-left: 1rem;
+margin-right: 1rem;
+margin-top: 1rem;
+}
